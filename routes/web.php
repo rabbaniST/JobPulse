@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,6 @@ Route::get('/', function () {
 
 
 Route::get('/admin/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+
+Route::get('/admin/login', [LoginController::class, 'login'])->name('login');
+Route::get('/admin/forget-password', [LoginController::class, 'forgetPassword'])->name('admin_foget_password');
