@@ -42,7 +42,7 @@
                                     </div>
                                     <div class="form-group">
                                         <div>
-                                            <a href="{{route('login')}}">
+                                            <a href="{{route('admin_login')}}">
                                                 Back to login page
                                             </a>
                                         </div>
