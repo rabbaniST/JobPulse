@@ -35,7 +35,7 @@
             <div class="main-content">
                 <section class="section">
                     <div class="section-header">
-                        <h1>Dashboard</h1>
+                        <h1>@yield('heading')</h1>
                     </div>
 
                     {{-- Main content --}}
@@ -48,6 +48,42 @@
     {{-- Footer Scripts  --}}
     @include('admin.layouts.footer_scripts')
 
-</body>
 
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+
+        <script>
+            iziToast.error({
+                title: '',
+                message: '{{ $error }}',
+                position: 'topRight'
+            });
+        </script>
+
+        @endforeach
+    @endif
+
+    {{-- For single error --}}
+    @if (session()->get('error'))
+    <script>
+        iziToast.error({
+            title: '',
+            message: '{{ session()->get('error') }}',
+            position: 'topRight'
+        });
+    </script>
+    @endif
+
+    {{-- For Success --}}
+    @if (session()->get('success'))
+    <script>
+        iziToast.success({
+            title: '',
+            message: '{{ session()->get('success') }}',
+            position: 'topRight'
+        });
+    </script>
+    @endif
+
+</body>
 </html>
