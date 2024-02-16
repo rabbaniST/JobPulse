@@ -29,6 +29,9 @@
                             <div class="card-header card-header-auth">
                                 <h4 class="text-center">Admin Panel Login</h4>
                             </div>
+                            @if (session()->get('success'))
+                            <div class="text-success">{{ session()->get('success') }}</div>
+                            @endif
                             <div class="card-body card-body-auth">
                                 <form method="POST" action="{{route('admin_login_submit')}}">
                                     @csrf

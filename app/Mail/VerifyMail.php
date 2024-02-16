@@ -12,10 +12,11 @@ class VerifyMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $otp;
-    public function __construct($otp)
+    public $subject, $body;
+    public function __construct($subject, $body)
     {
-        $this->otp= $otp;
+        $this->subject = $subject;
+        $this->body = $body;
     }
 
     /**
