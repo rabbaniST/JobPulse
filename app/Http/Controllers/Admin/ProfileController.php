@@ -18,7 +18,7 @@ class ProfileController extends Controller
 
     public function profileSubmit(Request $request)
     {
-        $data = Admin::where('email', Auth::guard('admin')->user()->email)->first();
+        $admin_data = Admin::where('email', Auth::guard('admin')->user()->email)->first();
 
         $request->validate([
             'name'   => 'required',
@@ -30,27 +30,29 @@ class ProfileController extends Controller
                 'password' => 'required',
                 'retype_password' => 'required|same:password'
             ]);
-            $data->password = Hash::make($request->password);
+            $admin_data->password = Hash::make($request->password);
         }
 
 
         if($request->hasFile('photo')) {
             $request->validate([
-                'photo' => 'image|mimes:jpeg,png,jpg,gif'
+                'photo' => 'image|mimes:jpg,jpeg,png,gif'
             ]);
-            unlink(public_path("admin/uploads" . $data->photo));
+
+            unlink(public_path("admin/uploads/".$admin_data->photo));
 
             $ext = $request->file('photo')->extension();
             $final_name = 'admin'.'.'.$ext;
 
-            $request->file('photo')->move(public_path('admin/uploads'), $final_name);
-            $data->photo = $final_name;
+            $request->file('photo')->move(public_path("admin/uploads/"),$final_name);
+
+            $admin_data->photo = $final_name;
         }
 
-        $data->name = $request->name;
-        $data->email = $request->email;
-        $data->update();
 
+        $admin_data->name = $request->name;
+        $admin_data->email = $request->email;
+        $admin_data->update();
         return redirect()->back()->with('success', 'Profile Information updated Successfullly');
     }
 }
