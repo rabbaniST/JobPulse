@@ -2,19 +2,24 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\LoginController;
-use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Forntend\HomeController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\HomePageSettingController;
+use App\Http\Controllers\Forntend\TermsController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[HomeController::class, 'index'])->name('home');
+Route::get('/terms',[TermsController::class, 'index'])->name('terms');
 
+// Admin Group routes
 Route::middleware(['admin:admin'])->group(function () {
     Route::get('/admin/dashboard', [DashboardController::class, 'dashboard'])->name('admin_dashboard');
     Route::get('/admin/edit-profile', [ProfileController::class, 'index'])->name('admin_profile');
     Route::post('/admin/profile-submit', [ProfileController::class, 'profileSubmit'])->name('admin_profile_submit');
+    Route::get('/admin/home-page-setting', [HomePageSettingController::class, 'index'])->name('home_page_setting');
 });
 
+// Admin Login Routes
 Route::get('/admin/login', [LoginController::class, 'login'])->name('admin_login');
 Route::get('/admin/forget-password', [LoginController::class, 'forgetPassword'])->name('admin_foget_password');
 Route::post('/admin/forget-password', [LoginController::class, 'forgetPasswordSubmit'])->name('admin_foget_password_submit');
