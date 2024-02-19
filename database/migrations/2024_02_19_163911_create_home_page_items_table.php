@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('heading');
             $table->string('text')->nullable();
-            $table->string('tob_title');
-            $table->string('tob_category');
-            $table->string('tob_location');
+            $table->string('job_title');
+            $table->string('job_category');
+            $table->string('job_location');
             $table->string('search');
             $table->string('background');
             $table->timestamps();

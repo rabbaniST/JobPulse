@@ -16,7 +16,8 @@ Route::middleware(['admin:admin'])->group(function () {
     Route::get('/admin/dashboard', [DashboardController::class, 'dashboard'])->name('admin_dashboard');
     Route::get('/admin/edit-profile', [ProfileController::class, 'index'])->name('admin_profile');
     Route::post('/admin/profile-submit', [ProfileController::class, 'profileSubmit'])->name('admin_profile_submit');
-    Route::get('/admin/home-page-setting', [HomePageSettingController::class, 'index'])->name('home_page_setting');
+    Route::get('/admin/home-page/setting', [HomePageSettingController::class, 'index'])->name('home_page_setting');
+    Route::post('/admin/home-page/update', [HomePageSettingController::class, 'update'])->name('home_page_update');
 });
 
 // Admin Login Routes
