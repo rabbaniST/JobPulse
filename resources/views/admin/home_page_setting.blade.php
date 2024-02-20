@@ -34,7 +34,7 @@
                                                         value="{{$home_page_data->heading}}">
                                                 </div>
                                                 <div class="mb-4">
-                                                    <label class="form-lable">Text *</label>
+                                                    <label class="form-lable">Text </label>
                                                     <textarea class="form-control h_100" name="text" cols="30" rows="10">{{$home_page_data->text}}</textarea>
                                                 </div>
                                                 <div class="row">
@@ -76,13 +76,12 @@
                                                 </div>
                                                 <div class="mb-4">
                                                     <label class="form-label">Change Image</label>
-                                                    <div class="mb-4">
-                                                        <input type="file" class="form-control mt_10" name="photo">
-                                                    </div>
+
+                                                        <input type="file" class="form-control mt_10" name="background">
+
                                                 </div>
                                                 <div class="mb-4">
-                                                    <label class="form-control"></label>
-                                                    <button type="submit" class="btn btn-primary mt-4">Update</button>
+                                                    <button type="submit" class="btn btn-primary">Update</button>
                                                 </div>
                                             </div>
                                         </div>

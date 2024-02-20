@@ -20,7 +20,7 @@ class HomePageSettingController extends Controller
         $home_page_data = HomePageItem::where('id', 1)->first();
         $request->validate([
             'heading' => 'required',
-            'text' => 'required',
+            'text' => 'nullable',
             'job_title' => 'required',
             'job_location' => 'required',
             'job_category' => 'required',
@@ -35,7 +35,7 @@ class HomePageSettingController extends Controller
             unlink(public_path("forntend/uploads/" . $home_page_data->background));
 
             $ext = $request->file('background')->extension();
-            $final_name = 'home_banner'.'.'. $ext;
+            $final_name = 'home_banner' . '.' . $ext;
 
             $request->file('background')->move(public_path("forntend/uploads/"), $final_name);
 

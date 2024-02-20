@@ -49,7 +49,6 @@ class ProfileController extends Controller
             $admin_data->photo = $final_name;
         }
 
-
         $admin_data->name = $request->name;
         $admin_data->email = $request->email;
         $admin_data->update();
