@@ -11,7 +11,7 @@
         <div class="container">
             <nav class="navbar navbar-expand-md navbar-light">
                 <a class="navbar-brand" href="{{route('home')}}">
-                    <img src="{{asset("forntend/uploads/logo.png")}}" alt="" />
+                    <a class="logo" href="{{route('home')}}"><span>Job</span>Pulse</a>
                 </a>
                 <div
                     class="collapse navbar-collapse mean-menu"

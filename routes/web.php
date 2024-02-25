@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Forntend\HomeController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HomePageSettingController;
+use App\Http\Controllers\Admin\JobCategoryController;
 use App\Http\Controllers\Forntend\TermsController;
 
 Route::get('/',[HomeController::class, 'index'])->name('home');
@@ -18,6 +19,9 @@ Route::middleware(['admin:admin'])->group(function () {
     Route::post('/admin/profile-submit', [ProfileController::class, 'profileSubmit'])->name('admin_profile_submit');
     Route::get('/admin/home-page/setting', [HomePageSettingController::class, 'index'])->name('home_page_setting');
     Route::post('/admin/home-page/update', [HomePageSettingController::class, 'update'])->name('home_page_update');
+
+    Route::get('/admin/job-category', [JobCategoryController::class, 'index'])->name('admin_job_category');
+    Route::get('/admin/job-category/create', [JobCategoryController::class, 'create'])->name('admin_job_category_create');
 });
 
 // Admin Login Routes

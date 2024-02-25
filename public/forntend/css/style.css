@@ -67,7 +67,7 @@ input {
 }
 
 .bg-website {
-    background: #46bc29 !important;
+    background: #FF407D !important;
     border: 0;
 }
 .ml-auto {
@@ -86,10 +86,10 @@ p {
 
 .dropdown-item.active,
 .dropdown-item:active {
-    background-color: #46bc29;
+    background-color: #FF407D;
 }
 .primary-color {
-    color: #46bc29;
+    color: #FF407D;
 }
 .primary-color:hover {
     color: #333;
@@ -279,14 +279,14 @@ select {
     display: block;
     width: 0;
     height: 2px;
-    background: #46bc29;
+    background: #FF407D;
     transition: width 0.5s;
 }
 .main-nav nav .navbar-nav .nav-item.active a:after {
     width: 100%;
 }
 .main-nav nav .navbar-nav .nav-item.active a {
-    color: #46bc29;
+    color: #FF407D;
 }
 .main-nav nav .navbar-nav .nav-item a:hover:after {
     width: 100%;
@@ -315,10 +315,10 @@ select {
     li
     a.active,
 .main-nav nav .navbar-nav .nav-item .dropdown-menu li:hover a {
-    color: #46bc29;
+    color: #FF407D;
 }
 .main-nav nav .navbar-nav .nav-item .dropdown-menu li a:hover {
-    color: #46bc29 !important;
+    color: #FF407D !important;
 }
 .main-nav img {
     height: 50px;
@@ -338,10 +338,10 @@ select {
     height: 50px;
 }
 .mean-container a.meanmenu-reveal span {
-    background: #46bc29;
+    background: #FF407D;
 }
 .mean-container a.meanmenu-reveal {
-    color: #46bc29;
+    color: #FF407D;
 }
 
 /* Scroll to Top */
@@ -355,7 +355,7 @@ select {
     line-height: 50px;
     bottom: 20px;
     right: 20px;
-    background: #46bc29;
+    background: #FF407D;
     color: #fff;
     opacity: 0.7;
     z-index: 999999;
@@ -432,14 +432,14 @@ select {
 .search-section button[type="submit"] {
     width: 100%;
     font-size: 15px;
-    background: #46bc29;
-    border: 1px solid #46bc29;
+    background: #FF407D;
+    border: 1px solid #FF407D;
     font-weight: 600;
 }
 .search-section button[type="submit"]:hover {
     background: #fff;
     border-color: #fff;
-    color: #46bc29;
+    color: #FF407D;
 }
 @media (max-width: 767px) {
     .search-section .form-control,
@@ -554,7 +554,7 @@ select {
 }
 .job-category .item .icon i {
     font-size: 30px;
-    color: #46bc29;
+    color: #FF407D;
 }
 .job-category .item h3 {
     font-size: 18px;
@@ -566,8 +566,8 @@ select {
     margin-bottom: 0;
 }
 .job-category .item:hover {
-    background: #46bc29;
-    border-color: #46bc29;
+    background: #FF407D;
+    border-color: #FF407D;
 }
 .job-category .item:hover .icon i {
     color: #fff;
@@ -582,11 +582,21 @@ select {
     text-align: center;
 }
 .job-category .all a {
-    background: #46bc29;
+    background: #FF407D;
     border: 0;
     color: #fff;
     font-size: 18px;
     padding: 15px 30px;
+}
+
+a.logo {
+    font-size: 30px;
+    color: black;
+    font-weight: 600;
+}
+
+a.logo span{
+    color: #FF407D;
 }
 
 /* Home Page - Featured Job */
@@ -656,18 +666,18 @@ select {
     transition: all 0.5s;
 }
 .job .item .text .bookmark i:hover {
-    background: #46bc29;
-    border-color: #46bc29;
+    background: #FF407D;
+    border-color: #FF407D;
     color: #fff;
 }
 .job .item .text .bookmark-active {
-    background: #46bc29;
-    border-color: #46bc29;
+    background: #FF407D;
+    border-color: #FF407D;
     color: #fff;
 }
 .job .item .text .bookmark i.active {
-    background: #46bc29;
-    border-color: #46bc29;
+    background: #FF407D;
+    border-color: #FF407D;
     color: #fff;
 }
 .job .item .text h3 {
@@ -678,7 +688,7 @@ select {
     color: #333;
 }
 .job .item .text h3 a:hover {
-    color: #46bc29;
+    color: #FF407D;
 }
 .job .item .text .detail-1 {
     font-size: 14px;
@@ -799,7 +809,7 @@ select {
 }
 .job .item .text .special .featured {
     background: #c8fcc1;
-    color: #15b23f;
+    color: #FF407D;
 }
 .job .item .text .special .type {
     background: #bbcdff;
@@ -842,13 +852,13 @@ select {
     line-height: 24px;
     border-radius: 50%;
     background: #c3f0c2;
-    color: #1f753d;
+    color: #FF407D;
 }
 .job .all {
     text-align: center;
 }
 .job .all a {
-    background: #46bc29;
+    background: #FF407D;
     border: 0;
     color: #fff;
     font-size: 18px;
@@ -924,7 +934,7 @@ select {
     font-size: 14px;
 }
 .blog .item .text .button a {
-    background: #46bc29;
+    background: #FF407D;
     border: 0;
 }
 @media (max-width: 1199px) {
@@ -965,7 +975,7 @@ select {
 }
 .footer input[type="submit"] {
     width: 100%;
-    background: #46bc29;
+    background: #FF407D;
     border: 0;
     margin-top: 10px;
 }
@@ -1001,7 +1011,7 @@ select {
 }
 .footer ul.social li a {
     color: #fff;
-    background: #46bc29;
+    background: #FF407D;
     width: 30px;
     height: 30px;
     line-height: 30px;
@@ -1009,7 +1019,7 @@ select {
     display: block;
 }
 .footer ul.social li a:hover {
-    color: #46bc29;
+    color: #FF407D;
     background: #fff;
 }
 
@@ -1071,11 +1081,11 @@ select {
     text-align: center;
 }
 .page-top .button a {
-    background: #46bc29;
+    background: #FF407D;
     border: 0;
 }
 .page-top .button a:hover {
-    background: #46bc29;
+    background: #FF407D;
     opacity: 0.8;
 }
 .page-top .bg {
@@ -1176,7 +1186,7 @@ select {
     width: 70%;
 }
 .faq .accordion-button {
-    color: #46bc29;
+    color: #FF407D;
     font-weight: 700;
     background: #ebebeb;
 }
@@ -1196,7 +1206,7 @@ select {
     font-weight: 700;
     background-image: none;
     transform: none;
-    color: #46bc29;
+    color: #FF407D;
 }
 .faq .accordion-button.collapsed::after {
     font-family: "Font Awesome 5 Free";
@@ -1309,7 +1319,7 @@ select {
 .testimonial-carousel .owl-dots .owl-dot {
     width: 24px;
     height: 24px;
-    background: #46bc29;
+    background: #FF407D;
     border: 7px solid #fff;
     border-radius: 50%;
     display: inline-block;
@@ -1331,7 +1341,7 @@ select {
     height: 50px;
     line-height: 48px;
     background: #fff;
-    color: #46bc29;
+    color: #FF407D;
     margin-top: -25px;
     transition: all 0.3s;
     -webkit-transition: all 0.3s;
@@ -1344,7 +1354,7 @@ select {
 }
 .testimonial-carousel .owl-nav .owl-prev:hover,
 .testimonial-carousel .owl-nav .owl-next:hover {
-    color: #46bc29;
+    color: #FF407D;
     background: #fff;
 }
 @media (max-width: 991px) {
@@ -1377,7 +1387,7 @@ select {
 }
 .job-filter .filter-button a {
     width: 100%;
-    background: #46bc29;
+    background: #FF407D;
     border: 0;
     color: #fff;
 }
@@ -1398,7 +1408,7 @@ select {
     border: 1px solid #ced4da !important;
 }
 .job .search-result-header {
-    background: #46bc29;
+    background: #FF407D;
     color: #fff;
     padding: 8px 15px;
     border-radius: 4px;
@@ -1445,7 +1455,7 @@ select {
     top: 35px;
 }
 .page-top-job-single .job-single .item .text .apply a {
-    background: #46bc29;
+    background: #FF407D;
     border: 0;
     padding: 12px 30px;
     font-weight: 600;
@@ -1530,7 +1540,7 @@ select {
     margin-bottom: 50px;
 }
 .job-result .left-item .apply a {
-    background: #46bc29;
+    background: #FF407D;
     border: 0;
 }
 .job-result .right-item {
@@ -1549,7 +1559,7 @@ select {
     height: 200px;
 }
 .job-result .right-item .enquery-form button {
-    background: #46bc29;
+    background: #FF407D;
     border: 0;
 }
 .job-result .right-item .summary table tr tr,
@@ -1708,7 +1718,7 @@ select {
 .pricing .card-title {
     font-size: 34px;
     font-weight: 700;
-    color: #46bc29;
+    color: #FF407D;
     text-align: center;
 }
 .pricing .card-price {
@@ -1729,7 +1739,7 @@ select {
 }
 .pricing .buy a {
     display: block;
-    background: #46bc29;
+    background: #FF407D;
     border: 0;
 }
 
@@ -1784,20 +1794,20 @@ select {
 }
 .user-panel .list-group-item a {
     display: block;
-    color: #46bc29;
+    color: #FF407D;
     font-weight: 600;
     transition: 0.4s;
     padding: 8px 15px;
 }
 .user-panel .list-group-item a:hover {
-    background: #46bc29;
+    background: #FF407D;
     color: #fff;
 }
 .user-panel .list-group .active {
-    border-color: #46bc29 !important;
+    border-color: #FF407D !important;
 }
 .user-panel .list-group .active a {
-    background: #46bc29 !important;
+    background: #FF407D !important;
     color: #fff !important;
 }
 .user-panel .box1,
@@ -1823,7 +1833,7 @@ select {
     background: #dcffe2;
 }
 .user-panel input[type="submit"] {
-    background: #46bc29;
+    background: #FF407D;
     border: 0;
 }
 .user-panel .logo {
@@ -1851,7 +1861,7 @@ select {
     font-size: 15px !important;
 }
 h4.resume {
-    color: #46bc29;
+    color: #FF407D;
     font-size: 22px;
     font-weight: 700;
 }
