@@ -20,8 +20,13 @@ Route::middleware(['admin:admin'])->group(function () {
     Route::get('/admin/home-page/setting', [HomePageSettingController::class, 'index'])->name('home_page_setting');
     Route::post('/admin/home-page/update', [HomePageSettingController::class, 'update'])->name('home_page_update');
 
+    // job category routes
     Route::get('/admin/job-category', [JobCategoryController::class, 'index'])->name('admin_job_category');
     Route::get('/admin/job-category/create', [JobCategoryController::class, 'create'])->name('admin_job_category_create');
+    Route::post('/admin/job-category/store', [JobCategoryController::class, 'store'])->name('admin_job_category_store');
+    Route::get('/admin/job-category/edit/{id}', [JobCategoryController::class, 'edit'])->name('admin_job_category_edit');
+    Route::post('/admin/job-category/update/{id}', [JobCategoryController::class, 'update'])->name('admin_job_category_update');
+    Route::get('/admin/job-category/delete/{id}', [JobCategoryController::class, 'delete'])->name('admin_job_category_delete');
 });
 
 // Admin Login Routes
