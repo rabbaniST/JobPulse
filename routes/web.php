@@ -4,11 +4,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Forntend\HomeController;
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\HomePageSettingController;
-use App\Http\Controllers\Admin\JobCategoryController;
-use App\Http\Controllers\Forntend\ForntJobCategoryController;
 use App\Http\Controllers\Forntend\TermsController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\WhyChooseController;
+use App\Http\Controllers\Admin\JobCategoryController;
+use App\Http\Controllers\Admin\HomePageSettingController;
+use App\Http\Controllers\Forntend\ForntJobCategoryController;
+
 
 Route::get('/',[HomeController::class, 'index'])->name('home');
 Route::get('/terms',[TermsController::class, 'index'])->name('terms');
@@ -29,6 +31,14 @@ Route::middleware(['admin:admin'])->group(function () {
     Route::get('/admin/job-category/edit/{id}', [JobCategoryController::class, 'edit'])->name('admin_job_category_edit');
     Route::post('/admin/job-category/update/{id}', [JobCategoryController::class, 'update'])->name('admin_job_category_update');
     Route::get('/admin/job-category/delete/{id}', [JobCategoryController::class, 'delete'])->name('admin_job_category_delete');
+
+
+    Route::get('/admin/why-choose', [WhyChooseController::class, 'index'])->name('admin_why_choose');
+    Route::get('/admin/why-choose/create', [WhyChooseController::class, 'create'])->name('admin_why_choose_create');
+    Route::post('/admin/why-choose/store', [WhyChooseController::class, 'store'])->name('admin_why_choose_store');
+    Route::get('/admin/why-choose/edit/{id}', [WhyChooseController::class, 'edit'])->name('admin_why_choose_edit');
+    Route::post('/admin/why-choose/update/{id}', [WhyChooseController::class, 'update'])->name('admin_why_choose_update');
+    Route::get('/admin/why-choose/delete/{id}', [WhyChooseController::class, 'delete'])->name('admin_why_choose_delete');
 });
 
 // Admin Login Routes
