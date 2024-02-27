@@ -20,6 +20,9 @@ return new class extends Migration
             $table->string('job_location');
             $table->string('search');
             $table->string('background');
+            $table->text('job_category_heading');
+            $table->text('job_category_subheading');
+            $table->text('job_category_status');
             $table->timestamps();
         });
     }

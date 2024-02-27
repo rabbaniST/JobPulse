@@ -8,6 +8,9 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
+                        <form action="{{ route('home_page_update') }}" method="POST"
+                        enctype="multipart/form-data">
+                        @csrf
                         <div class="d-flex align-items-start">
                             <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist"
                                 aria-orientation="vertical">
@@ -17,15 +20,13 @@
 
                                 <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill"
                                     data-bs-target="#v-pills-profile" type="button" role="tab"
-                                    aria-controls="v-pills-profile" aria-selected="false">Category</button>
+                                    aria-controls="v-pills-profile" aria-selected="false">Job Category</button>
                             </div>
+                            <div class="col-lg-9 col-md-">
                             <div class="tab-content" id="v-pills-tabContent">
                                 <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
                                     aria-labelledby="v-pills-home-tab">
                                     {{-- Search Section Start Here --}}
-                                    <form action="{{ route('home_page_update') }}" method="POST"
-                                        enctype="multipart/form-data">
-                                        @csrf
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="mb-4">
@@ -78,20 +79,43 @@
                                                     <label class="form-label">Change Image</label>
 
                                                         <input type="file" class="form-control mt_10" name="background">
-
-                                                </div>
-                                                <div class="mb-4">
-                                                    <button type="submit" class="btn btn-primary">Update</button>
                                                 </div>
                                             </div>
                                         </div>
-                                    </form>
                                     {{-- Search Section Ends Here --}}
                                 </div>
                                 <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
-                                    aria-labelledby="v-pills-profile-tab">...</div>
+                                    aria-labelledby="v-pills-profile-tab">
+                                    {{-- Category Section Start Here --}}
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="mb-4">
+                                                <label class="form-lable">Heading *</label>
+                                                <input type="text" class="form-control" name="job_category_heading"
+                                                    value="{{$home_page_data->job_category_heading}}">
+                                            </div>
+                                            <div class="mb-4">
+                                                <label class="form-lable">Sub Heading </label>
+                                                <input type="text" class="form-control" name="job_category_subheading"
+                                                    value="{{$home_page_data->job_category_subheading}}">
+                                            </div>
+                                            <div class="mb-4">
+                                                <label class="form-lable">Status *</label>
+                                                <select name="job_category_status" class="form-control" id="">
+                                                    <option value="Show" @if($home_page_data->job_category_status == 'Show') selected @endif>Show</option>
+                                                    <option value="Hide"  @if($home_page_data->job_category_status == 'Hide') selected @endif>Hide</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                </div>
                             </div>
                         </div>
+                        </div>
+                    </form>
                     </div>
                 </div>
             </div>

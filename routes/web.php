@@ -7,10 +7,12 @@ use App\Http\Controllers\Forntend\HomeController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HomePageSettingController;
 use App\Http\Controllers\Admin\JobCategoryController;
+use App\Http\Controllers\Forntend\ForntJobCategoryController;
 use App\Http\Controllers\Forntend\TermsController;
 
 Route::get('/',[HomeController::class, 'index'])->name('home');
 Route::get('/terms',[TermsController::class, 'index'])->name('terms');
+Route::get('/job-categories',[ForntJobCategoryController::class, 'categories'])->name('job_categories');
 
 // Admin Group routes
 Route::middleware(['admin:admin'])->group(function () {
