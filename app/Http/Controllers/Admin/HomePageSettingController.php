@@ -26,10 +26,15 @@ class HomePageSettingController extends Controller
             'search' => 'required',
             'job_category_heading' => 'required',
             'job_category_status' => 'required',
+            'why_choose_heading' => 'required',
+            'why_choose_status' => 'required',
             'featured_job_heading' => 'required',
             'featured_job_status' => 'required',
+            'testimonial_heading' => 'required',
+            'testimonial_status' => 'required',
         ]);
 
+        // Hero Section Background
         if ($request->hasFile('background')) {
             $request->validate([
                 'background' => 'image|mimes:jpg,jpeg,png,gif'
@@ -45,6 +50,7 @@ class HomePageSettingController extends Controller
             $home_page_data->why_choose_background = $final_name;
         }
 
+        // Why Choose Background
         if ($request->hasFile('why_choose_background')) {
             $request->validate([
                 'why_choose_background' => 'image|mimes:jpg,jpeg,png,gif'
@@ -58,6 +64,22 @@ class HomePageSettingController extends Controller
             $request->file('why_choose_background')->move(public_path("forntend/uploads/"), $final_name);
 
             $home_page_data->why_choose_background = $final_name;
+        }
+
+        // Tesiminial Background
+        if ($request->hasFile('testimonial_background')) {
+            $request->validate([
+                'testimonial_background' => 'image|mimes:jpg,jpeg,png,gif'
+            ]);
+
+            unlink(public_path("forntend/uploads/" . $home_page_data->testimonial_background));
+
+            $ext1 = $request->file('testimonial_background')->extension();
+            $final_name = 'testimonial_background' . '.' . $ext1;
+
+            $request->file('testimonial_background')->move(public_path("forntend/uploads/"), $final_name);
+
+            $home_page_data->testimonial_background = $final_name;
         }
 
 
@@ -78,6 +100,10 @@ class HomePageSettingController extends Controller
         $home_page_data->featured_job_heading = $request->featured_job_heading;
         $home_page_data->featured_job_subheading = $request->featured_job_subheading;
         $home_page_data->featured_job_status = $request->featured_job_status;
+
+        $home_page_data->testimonial_heading = $request->testimonial_heading;
+        $home_page_data->testimonial_status = $request->testimonial_status;
+
         $home_page_data->update();
 
         return redirect()->back()->with('success', 'Home Page Information updated Successfullly');

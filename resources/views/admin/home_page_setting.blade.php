@@ -31,6 +31,10 @@
                                     data-bs-target="#v-pills-4" type="button" role="tab"
                                     aria-controls="v-pills-4" aria-selected="false">Featured Job
                                 </button>
+                                <button class="nav-link" id="v-pills-5-tab" data-bs-toggle="pill"
+                                data-bs-target="#v-pills-5" type="button" role="tab"
+                                aria-controls="v-pills-5" aria-selected="false">Testimonial
+                            </button>
 
                             </div>
                             <div class="col-lg-9 col-md-">
@@ -186,6 +190,39 @@
                                 </div>
                                  {{-- Featured Job Section Start Here --}}
                             </div>
+                            <div class="tab-pane fade" id="v-pills-5" role="tabpanel"
+                            aria-labelledby="v-pills-5">
+                            {{-- Testimonial Section Start Here --}}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="mb-4">
+                                        <label class="form-lable">Heading *</label>
+                                        <input type="text" class="form-control" name="testimonial_heading"
+                                            value="{{$home_page_data->testimonial_heading}}">
+                                    </div>
+                                    <div class="mb-4"> +
+                                        <label class="form-lable">Background Image *</label>
+                                        <div>
+                                            <img src="{{ asset('forntend/uploads/'.$home_page_data->testimonial_background) }}"
+                                                name="testimonial_background" class="w_300">
+                                        </div>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="form-label">Change Image</label>
+
+                                        <input type="file" class="form-control mt_10" name="testimonial_background">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="form-lable">Status *</label>
+                                        <select name="testimonial_status" class="form-control" id="">
+                                            <option value="Show" @if($home_page_data->testimonial_status == 'Show') selected @endif>Show</option>
+                                            <option value="Hide"  @if($home_page_data->testimonial_status == 'Hide') selected @endif>Hide</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                             {{-- Testimonial Section Ends  Here --}}
+                        </div>
 
                                 <div class="mb-4">
                                     <button type="submit" class="btn btn-primary">Update</button>
