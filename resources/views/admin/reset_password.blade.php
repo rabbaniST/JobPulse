@@ -12,10 +12,10 @@
 
 
      {{-- Styles including here --}}
-     @include('admin.layouts.styles')
+     @include('admin.layout.styles')
 
      {{-- Scripts including here --}}
-     @include('admin.layouts.scripts')
+     @include('admin.layout.scripts')
 
 </head>
 
@@ -36,7 +36,7 @@
 
                                     <input type="hidden" name="token" value="{{$token}}">
                                     <input type="hidden" name="email" value="{{$email}}">
-                                    
+
                                     <div class="form-group">
                                         <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password" value="" autofocus>
                                         @error('password')

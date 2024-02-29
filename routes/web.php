@@ -1,24 +1,34 @@
 <?php
 
+use App\Models\BlogPageItem;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Forntend\HomeController;
+use App\Http\Controllers\Forntend\PostController;
+use App\Http\Controllers\Admin\BlogPageController;
+use App\Http\Controllers\Admin\BlogPostController;
 use App\Http\Controllers\Forntend\TermsController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\WhyChooseController;
 use App\Http\Controllers\Admin\JobCategoryController;
-use App\Http\Controllers\Admin\HomePageSettingController;
 use App\Http\Controllers\Admin\TestimonialController;
+use App\Http\Controllers\Admin\HomePageSettingController;
 use App\Http\Controllers\Forntend\ForntJobCategoryController;
 
 
 Route::get('/',[HomeController::class, 'index'])->name('home');
 Route::get('/terms',[TermsController::class, 'index'])->name('terms');
 Route::get('/job-categories',[ForntJobCategoryController::class, 'categories'])->name('job_categories');
+Route::get('/blog', [PostController::class, 'index'])->name('blog');
+Route::get('post/{slug}', [PostController::class, 'detail'])->name('post');
 
 // Admin Group routes
 Route::middleware(['admin:admin'])->group(function () {
+
+    Route::get('/admin/blog-page', [BlogPageController::class, 'index'])->name('admin_blog_page');
+    Route::post('/admin/blog-page/update', [BlogPageController::class, 'update'])->name('admin_blog_page_update');
+
     Route::get('/admin/dashboard', [DashboardController::class, 'dashboard'])->name('admin_dashboard');
     Route::get('/admin/edit-profile', [ProfileController::class, 'index'])->name('admin_profile');
     Route::post('/admin/profile-submit', [ProfileController::class, 'profileSubmit'])->name('admin_profile_submit');
@@ -48,6 +58,14 @@ Route::middleware(['admin:admin'])->group(function () {
     Route::get('/admin/testimonial/edit/{id}', [TestimonialController::class, 'edit'])->name('admin_testimonial_edit');
     Route::post('/admin/testimonial/update/{id}', [TestimonialController::class, 'update'])->name('admin_testimonial_update');
     Route::get('/admin/testimonial/delete/{id}', [TestimonialController::class, 'delete'])->name('admin_testimonial_delete');
+
+    // Blog Section Routes
+    Route::get('/admin/blog-post', [BlogPostController::class, 'index'])->name('admin_blog_post');
+    Route::get('/admin/blog-post/create', [BlogPostController::class, 'create'])->name('admin_blog_post_create');
+    Route::post('/admin/blog-post/store', [BlogPostController::class, 'store'])->name('admin_blog_post_store');
+    Route::get('/admin/blog-post/edit/{id}', [BlogPostController::class, 'edit'])->name('admin_blog_post_edit');
+    Route::post('/admin/blog-post/update/{id}', [BlogPostController::class, 'update'])->name('admin_blog_post_update');
+    Route::get('/admin/blog-post/delete/{id}', [BlogPostController::class, 'delete'])->name('admin_blog_post_delete');
 });
 
 // Admin Login Routes

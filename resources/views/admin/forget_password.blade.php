@@ -12,10 +12,10 @@
 
 
      {{-- Styles including here --}}
-     @include('admin.layouts.styles')
+     @include('admin.layout.styles')
 
      {{-- Scripts including here --}}
-     @include('admin.layouts.scripts')
+     @include('admin.layout.scripts')
 
 </head>
 

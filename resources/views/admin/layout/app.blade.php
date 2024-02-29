@@ -12,10 +12,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
 
     {{-- Styles including here --}}
-    @include('admin.layouts.styles')
+    @include('admin.layout.styles')
 
     {{-- Scripts including here --}}
-    @include('admin.layouts.scripts')
+    @include('admin.layout.scripts')
 
 </head>
 
@@ -26,10 +26,10 @@
             <div class="navbar-bg"></div>
 
             {{-- Navbar Include Here --}}
-            @include('admin.layouts.navbar')
+            @include('admin.layout.navbar')
 
             {{-- Sidebar Include Here --}}
-            @include('admin.layouts.sidebar')
+            @include('admin.layout.sidebar')
 
 
             <div class="main-content">
@@ -47,7 +47,7 @@
         </div>
     </div>
     {{-- Footer Scripts  --}}
-    @include('admin.layouts.footer_scripts')
+    @include('admin.layout.footer_scripts')
 
 
     @if ($errors->any())

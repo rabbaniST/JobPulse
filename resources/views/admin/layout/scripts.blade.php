@@ -11,9 +11,10 @@
     <script src="{{asset('admin/dist/js/bootstrap-timepicker.min.js')}}"></script>
     <script src="{{asset('admin/dist/js/bootstrap-tagsinput.min.js')}}"></script>
     <script src="{{asset('admin/dist/js/select2.full.min.js')}}"></script>
-    <script src="{{asset('admin/dist/js/summernote-bs4.js')}}"></script>
+    {{-- <script src="{{asset('admin/dist/js/summernote-bs4.js')}}"></script> --}}
     <script src="{{asset('admin/dist/js/jquery.dataTables.min.j')}}s"></script>
     <script src="{{asset('admin/dist/js/dataTables.bootstrap4.min.js')}}"></script>
     <script src="{{asset('admin/dist/js/iziToast.min.js')}}"></script>
     <script src="{{asset('admin/dist/js/fontawesome-iconpicker.js')}}"></script>
     <script src="{{asset('admin/dist/js/bootstrap4-toggle.min.js')}}"></script>
+    <script src="{{asset('tinymce/tinymce.min.js')}}"></script>
