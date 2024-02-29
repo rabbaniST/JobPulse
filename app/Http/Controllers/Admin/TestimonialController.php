@@ -88,6 +88,8 @@ class TestimonialController extends Controller
 
     public function delete($id)
     {
+        $testimonial_data = Testimonial::where('id', $id)->first();
+        unlink(public_path('forntend/uploads/'. $testimonial_data->photo));
         Testimonial::where('id', $id)->delete();
         return redirect()->route('admin_testimonial')->with('success', 'Data has been Deleted successfully');
     }
