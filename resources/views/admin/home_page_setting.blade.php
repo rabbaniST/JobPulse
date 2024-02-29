@@ -11,16 +11,27 @@
                         <form action="{{ route('home_page_update') }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
-                        <div class="d-flex align-items-start">
+                        <div class="d-flex align-items-start custom-tab">
                             <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist"
                                 aria-orientation="vertical">
-                                <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill"
+                                <button class="nav-link active" id="v-pills-1-tab" data-bs-toggle="pill"
                                     data-bs-target="#v-pills-home" type="button" role="tab"
-                                    aria-controls="v-pills-home" aria-selected="true">Search</button>
+                                    aria-controls="v-pills-1" aria-selected="true">Search</button>
 
-                                <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill"
-                                    data-bs-target="#v-pills-profile" type="button" role="tab"
-                                    aria-controls="v-pills-profile" aria-selected="false">Job Category</button>
+                                <button class="nav-link" id="v-pills-2-tab" data-bs-toggle="pill"
+                                    data-bs-target="#v-pills-2" type="button" role="tab"
+                                    aria-controls="v-pills-2" aria-selected="false">Job Category
+                                </button>
+
+                                <button class="nav-link" id="v-pills-3-tab" data-bs-toggle="pill"
+                                    data-bs-target="#v-pills-3" type="button" role="tab"
+                                    aria-controls="v-pills-3" aria-selected="false">Why Choose
+                                </button>
+                                <button class="nav-link" id="v-pills-4-tab" data-bs-toggle="pill"
+                                    data-bs-target="#v-pills-4" type="button" role="tab"
+                                    aria-controls="v-pills-4" aria-selected="false">Featured Job
+                                </button>
+
                             </div>
                             <div class="col-lg-9 col-md-">
                             <div class="tab-content" id="v-pills-tabContent">
@@ -78,15 +89,15 @@
                                                 <div class="mb-4">
                                                     <label class="form-label">Change Image</label>
 
-                                                        <input type="file" class="form-control mt_10" name="background">
+                                                    <input type="file" class="form-control mt_10" name="background">
                                                 </div>
                                             </div>
                                         </div>
                                     {{-- Search Section Ends Here --}}
                                 </div>
-                                <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
+                                <div class="tab-pane fade" id="v-pills-2" role="tabpanel"
                                     aria-labelledby="v-pills-profile-tab">
-                                    {{-- Category Section Start Here --}}
+                                    {{-- Job Category Section Start Here --}}
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="mb-4">
@@ -108,7 +119,74 @@
                                             </div>
                                         </div>
                                     </div>
+                                     {{-- Job Category Section Start Here --}}
                                 </div>
+                                <div class="tab-pane fade" id="v-pills-3" role="tabpanel"
+                                    aria-labelledby="v-pills-3">
+                                    {{-- Why Choose Section Start Here --}}
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="mb-4">
+                                                <label class="form-lable">Heading *</label>
+                                                <input type="text" class="form-control" name="why_choose_heading"
+                                                    value="{{$home_page_data->why_choose_heading}}">
+                                            </div>
+                                            <div class="mb-4">
+                                                <label class="form-lable">Sub Heading </label>
+                                                <input type="text" class="form-control" name="why_choose_subheading"
+                                                    value="{{$home_page_data->why_choose_subheading}}">
+                                            </div>
+                                            <div class="mb-4"> +
+                                                <label class="form-lable">Background Image *</label>
+                                                <div>
+                                                    <img src="{{ asset('forntend/uploads/'.$home_page_data->why_choose_background) }}"
+                                                        name="why_choose_background" class="w_300">
+                                                </div>
+                                            </div>
+                                            <div class="mb-4">
+                                                <label class="form-label">Change Image</label>
+
+                                                <input type="file" class="form-control mt_10" name="why_choose_background">
+                                            </div>
+                                            <div class="mb-4">
+                                                <label class="form-lable">Status *</label>
+                                                <select name="why_choose_status" class="form-control" id="">
+                                                    <option value="Show" @if($home_page_data->why_choose_status == 'Show') selected @endif>Show</option>
+                                                    <option value="Hide"  @if($home_page_data->why_choose_status == 'Hide') selected @endif>Hide</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     {{-- Why Choose Section Ends  Here --}}
+                                </div>
+
+                                <div class="tab-pane fade" id="v-pills-4" role="tabpanel"
+                                aria-labelledby="v-pills-4-tab">
+                                {{--Featured Job Section Start Here --}}
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="mb-4">
+                                            <label class="form-lable">Heading *</label>
+                                            <input type="text" class="form-control" name="featured_job_heading"
+                                                value="{{$home_page_data->featured_job_heading}}">
+                                        </div>
+                                        <div class="mb-4">
+                                            <label class="form-lable">Sub Heading </label>
+                                            <input type="text" class="form-control" name="featured_job_subheading"
+                                                value="{{$home_page_data->featured_job_subheading}}">
+                                        </div>
+                                        <div class="mb-4">
+                                            <label class="form-lable">Status *</label>
+                                            <select name="featured_job_status" class="form-control" id="">
+                                                <option value="Show" @if($home_page_data->featured_job_status == 'Show') selected @endif>Show</option>
+                                                <option value="Hide"  @if($home_page_data->featured_job_status == 'Hide') selected @endif>Hide</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                 {{-- Featured Job Section Start Here --}}
+                            </div>
+
                                 <div class="mb-4">
                                     <button type="submit" class="btn btn-primary">Update</button>
                                 </div>

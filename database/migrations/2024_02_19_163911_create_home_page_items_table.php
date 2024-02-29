@@ -23,6 +23,14 @@ return new class extends Migration
             $table->text('job_category_heading');
             $table->text('job_category_subheading');
             $table->text('job_category_status');
+            $table->text('why_choose_heading');
+            $table->text('why_choose_subheading');
+            $table->text('why_choose_background');
+            $table->text('why_choose_status');
+            $table->string('featured_job_heading');
+            $table->string('featured_job_subheading');
+            $table->string('featured_job_status');
+
             $table->timestamps();
         });
     }

@@ -29,6 +29,9 @@
 
             <li class="{{ Request::is('admin/why-choose') ? 'active' : ''}}"><a class="nav-link" href="{{route('admin_why_choose')}}"  data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Why Choose Items"><i class="fas fa-hand-point-right"></i> <span>Why Choose Item</span></a>
             </li>
+
+            <li class="{{ Request::is('admin/testimonial') ? 'active' : ''}}"><a class="nav-link" href="{{route('admin_testimonial')}}"  data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Testimonial"><i class="fas fa-hand-point-right"></i> <span>Testimonial</span></a>
+            </li>
         </ul>
     </aside>
 </div>

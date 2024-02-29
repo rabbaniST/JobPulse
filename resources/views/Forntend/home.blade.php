@@ -122,15 +122,15 @@
     </div>
     @endif
 
-    <div class="why-choose" style="background-image: url({{ asset('forntend/uploads/banner3.jpg') }})">
+    @if($home_page_data->why_choose_status == 'Show')
+    <div class="why-choose" style="background-image: url({{ asset('forntend/uploads/'.$home_page_data->why_choose_background)}})">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="heading">
-                        <h2>Why Choose Us</h2>
+                        <h2> {{$home_page_data->why_choose_heading}}</h2>
                         <p>
-                            Our Methods to help you build your career in
-                            future
+                            {{$home_page_data->why_choose_subheading}}
                         </p>
                     </div>
                 </div>
@@ -154,14 +154,16 @@
             </div>
         </div>
     </div>
+    @endif
 
+    @if($home_page_data->featured_job_status == 'Show')
     <div class="job">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="heading">
-                        <h2>Featured Jobs</h2>
-                        <p>Find the awesome jobs that matches your skill</p>
+                        <h2>{{$home_page_data->featured_job_heading}}</h2>
+                        <p>{{$home_page_data->featured_job_subheading}}</p>
                     </div>
                 </div>
             </div>
@@ -344,6 +346,8 @@
             </div>
         </div>
     </div>
+
+    @endif
 
     <div class="testimonial" style="background-image: url({{ asset('forntend/uploads/banner11.jpg') }})">
         <div class="bg"></div>
