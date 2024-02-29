@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\BlogPost;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 
 class BlogPostController extends Controller
@@ -11,12 +12,12 @@ class BlogPostController extends Controller
     public function index()
     {
         $posts = BlogPost::get();
-        return view('admin.blog_post',compact('posts'));
+        return view('admin.pages.blog.blog_post',compact('posts'));
     }
 
     public function create()
     {
-        return view('admin.blog_post_create');
+        return view('admin.pages.blog.blog_post_create');
     }
 
     public function store(Request $request)
@@ -52,7 +53,7 @@ class BlogPostController extends Controller
     public function edit($id)
     {
         $post_single = BlogPost::where('id',$id)->first();
-        return view('admin.blog_post_edit',compact('post_single'));
+        return view('admin.pages.blog.blog_post_edit',compact('post_single'));
     }
 
     public function update(Request $request, $id)
@@ -61,7 +62,7 @@ class BlogPostController extends Controller
 
         $request->validate([
             'heading' => 'required',
-            'slug' => 'required|alpha_dash|unique:blog_posts',
+            'slug' => ['required','alpha_dash', Rule::unique('blog_posts')->ignore($id)],
             'short_description' => 'required',
             'description' => 'required'
         ]);

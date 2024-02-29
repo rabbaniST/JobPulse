@@ -11,12 +11,12 @@ class TestimonialController extends Controller
     public function index()
     {
         $testimonials = Testimonial::get();
-        return view('admin.testimonial', compact('testimonials'));
+        return view('admin.pages.testimonial.testimonial', compact('testimonials'));
     }
 
     public function create()
     {
-        return view('admin.testimonial_create');
+        return view('admin.pages.testimonial.testimonial_create');
     }
 
     public function store(Request $request)
@@ -48,7 +48,7 @@ class TestimonialController extends Controller
     public function edit($id)
     {
         $testimonial_data = Testimonial::where('id', $id)->first();
-        return view('admin.testimonial_edit', compact('testimonial_data'));
+        return view('admin.pages.testimonial.testimonial_edit', compact('testimonial_data'));
     }
 
 

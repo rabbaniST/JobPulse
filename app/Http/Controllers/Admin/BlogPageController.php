@@ -11,7 +11,7 @@ class BlogPageController extends Controller
     public function index()
     {
         $page_blog_data = BlogPageItem::where('id',1)->first();
-        return view('admin.blog_page', compact('page_blog_data'));
+        return view('admin.pages.blog.blog_page', compact('page_blog_data'));
     }
 
     public function update(Request $request)

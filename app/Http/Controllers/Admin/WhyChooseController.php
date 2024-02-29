@@ -11,12 +11,12 @@ class WhyChooseController extends Controller
     public function index()
     {
         $data = WhyChoose::get();
-        return view('admin.why_choose', compact('data'));
+        return view('admin.pages.why_choose.why_choose', compact('data'));
     }
 
     public function create()
     {
-        return view('admin.why_choose_create');
+        return view('admin.pages.why_choose.why_choose_create');
     }
 
     public function store(Request $request)
@@ -40,7 +40,7 @@ class WhyChooseController extends Controller
     public function edit($id)
     {
         $why_choose_item = WhyChoose::where('id', $id)->first();
-        return view('admin.why_choose_edit', compact('why_choose_item'));
+        return view('admin.pages.why_choose.why_choose_edit', compact('why_choose_item'));
     }
 
     public function update(Request $request, $id)

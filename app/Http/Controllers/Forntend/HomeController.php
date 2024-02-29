@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Forntend;
 
+use App\Models\BlogPost;
 use App\Models\WhyChoose;
 use App\Models\JobCategory;
+use App\Models\Testimonial;
 use App\Models\HomePageItem;
 use App\Http\Controllers\Controller;
-use App\Models\Testimonial;
 
 class HomeController extends Controller
 {
@@ -16,6 +17,7 @@ class HomeController extends Controller
         $job_category_data = JobCategory::orderBy('name', 'ASC')->take('9')->get();
         $why_choose_data = WhyChoose::get();
         $testimonial_data = Testimonial::get();
-        return view('Forntend.home',compact('home_page_data', 'job_category_data', 'why_choose_data','testimonial_data'));
+        $blog_posts = BlogPost::get();
+        return view('Forntend.home',compact('home_page_data', 'job_category_data','blog_posts', 'why_choose_data','testimonial_data'));
     }
 }

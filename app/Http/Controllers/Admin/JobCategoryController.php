@@ -12,12 +12,12 @@ class JobCategoryController extends Controller
     public function index()
     {
         $job_categories = JobCategory::get();
-        return view('admin.job_category',compact('job_categories'));
+        return view('admin.pages.job_category.job_category',compact('job_categories'));
     }
 
     public function create()
     {
-        return view('admin.job_category_create');
+        return view('admin.pages.job_category.job_category_create');
     }
 
     public function store(Request $request)
@@ -38,7 +38,7 @@ class JobCategoryController extends Controller
     public function edit($id)
     {
         $job_category_edit = JobCategory::where('id', $id)->first();
-        return view('admin.job_category_edit',compact('job_category_edit'));
+        return view('admin.pages.job_category.job_category_edit',compact('job_category_edit'));
     }
 
     public function update(Request $request, $id)

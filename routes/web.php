@@ -1,8 +1,8 @@
 <?php
-
-use App\Models\BlogPageItem;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\FaqPageController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Forntend\HomeController;
 use App\Http\Controllers\Forntend\PostController;
@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\WhyChooseController;
 use App\Http\Controllers\Admin\JobCategoryController;
 use App\Http\Controllers\Admin\TestimonialController;
+use App\Http\Controllers\Forntend\ForntFaqController;
 use App\Http\Controllers\Admin\HomePageSettingController;
 use App\Http\Controllers\Forntend\ForntJobCategoryController;
 
@@ -22,13 +23,20 @@ Route::get('/terms',[TermsController::class, 'index'])->name('terms');
 Route::get('/job-categories',[ForntJobCategoryController::class, 'categories'])->name('job_categories');
 Route::get('/blog', [PostController::class, 'index'])->name('blog');
 Route::get('post/{slug}', [PostController::class, 'detail'])->name('post');
+Route::get('faq', [ForntFaqController::class, 'index'])->name('faq');
+
 
 // Admin Group routes
 Route::middleware(['admin:admin'])->group(function () {
 
+
     Route::get('/admin/blog-page', [BlogPageController::class, 'index'])->name('admin_blog_page');
     Route::post('/admin/blog-page/update', [BlogPageController::class, 'update'])->name('admin_blog_page_update');
 
+    Route::get('/admin/faq-page', [FaqPageController::class, 'index'])->name('admin_faq_page');
+    Route::post('/admin/faq-page/update', [FaqPageController::class, 'update'])->name('admin_faq_page_update');
+
+    // Admin Dashboard Route and middleware
     Route::get('/admin/dashboard', [DashboardController::class, 'dashboard'])->name('admin_dashboard');
     Route::get('/admin/edit-profile', [ProfileController::class, 'index'])->name('admin_profile');
     Route::post('/admin/profile-submit', [ProfileController::class, 'profileSubmit'])->name('admin_profile_submit');
@@ -66,6 +74,14 @@ Route::middleware(['admin:admin'])->group(function () {
     Route::get('/admin/blog-post/edit/{id}', [BlogPostController::class, 'edit'])->name('admin_blog_post_edit');
     Route::post('/admin/blog-post/update/{id}', [BlogPostController::class, 'update'])->name('admin_blog_post_update');
     Route::get('/admin/blog-post/delete/{id}', [BlogPostController::class, 'delete'])->name('admin_blog_post_delete');
+
+    // Faq routes
+    Route::get('/admin/faq/view', [FaqController::class, 'index'])->name('admin_faq');
+    Route::get('/admin/faq/create', [FaqController::class, 'create'])->name('admin_faq_create');
+    Route::post('/admin/faq/store', [FaqController::class, 'store'])->name('admin_faq_store');
+    Route::get('/admin/faq/edit/{id}', [FaqController::class, 'edit'])->name('admin_faq_edit');
+    Route::post('/admin/faq/update/{id}', [FaqController::class, 'update'])->name('admin_faq_update');
+    Route::get('/admin/faq/delete/{id}', [FaqController::class, 'delete'])->name('admin_faq_delete');
 });
 
 // Admin Login Routes
