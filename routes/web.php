@@ -15,11 +15,12 @@ use App\Http\Controllers\Admin\JobCategoryController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Forntend\ForntFaqController;
 use App\Http\Controllers\Admin\HomePageSettingController;
+use App\Http\Controllers\Admin\TermController;
 use App\Http\Controllers\Forntend\ForntJobCategoryController;
 
 
 Route::get('/',[HomeController::class, 'index'])->name('home');
-Route::get('/terms',[TermsController::class, 'index'])->name('terms');
+Route::get('terms-of-use', [TermsController::class, 'index'])->name('terms');
 Route::get('/job-categories',[ForntJobCategoryController::class, 'categories'])->name('job_categories');
 Route::get('/blog', [PostController::class, 'index'])->name('blog');
 Route::get('post/{slug}', [PostController::class, 'detail'])->name('post');
@@ -35,6 +36,9 @@ Route::middleware(['admin:admin'])->group(function () {
 
     Route::get('/admin/faq-page', [FaqPageController::class, 'index'])->name('admin_faq_page');
     Route::post('/admin/faq-page/update', [FaqPageController::class, 'update'])->name('admin_faq_page_update');
+
+    Route::get('/admin/term-page', [TermController::class, 'index'])->name('admin_term_page');
+    Route::post('/admin/term-page/update', [TermController::class, 'update'])->name('admin_term_page_update');
 
     // Admin Dashboard Route and middleware
     Route::get('/admin/dashboard', [DashboardController::class, 'dashboard'])->name('admin_dashboard');

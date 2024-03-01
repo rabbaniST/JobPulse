@@ -17,6 +17,7 @@
                     <li class="{{Request::is('admin/home-page/setting') ? 'active' : ' '}}"><a class="nav-link" href="{{route('home_page_setting')}}"><i class="fas fa-angle-right"></i>Home</a></li>
                     <li class="{{ Request::is('admin/faq-page') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_faq_page') }}"><i class="fas fa-angle-right"></i> FAQ</a></li>
                     <li class="{{ Request::is('admin/blog-page') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_blog_page') }}"><i class="fas fa-angle-right"></i> Blog</a></li>
+                    <li class="{{ Request::is('admin/term-page') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_term_page') }}"><i class="fas fa-angle-right"></i> Terms of Use</a></li>
                 </ul>
 
             </li>
