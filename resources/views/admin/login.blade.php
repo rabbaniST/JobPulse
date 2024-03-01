@@ -76,7 +76,7 @@
 </div>
 
  {{-- Footer Scripts  --}}
- @include('admin.layouts.footer_scripts')
+ @include('admin.layout.footer_scripts')
 
 </body>
 </html>

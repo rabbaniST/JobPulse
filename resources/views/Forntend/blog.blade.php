@@ -1,5 +1,8 @@
 @extends('Forntend.layout.app')
 
+@section('seo_title'){{ $blog_page_item->title }}@endsection
+@section('seo_meta_description'){{ $blog_page_item->meta_description }}@endsection
+
 @section('main-content')
 <div class="page-top" style="background-image: url('{{ asset('forntend/uploads/banner.jpg')}}')">
     <div class="bg"></div>

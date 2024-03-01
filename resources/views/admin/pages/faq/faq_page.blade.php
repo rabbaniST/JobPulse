@@ -14,7 +14,6 @@
                             <label>Heading *</label>
                             <input type="text" class="form-control" name="heading" value="{{ $page_faq_data->heading }}">
                         </div>
-
                         <h4 class="seo_section">SEO Section</h4>
                         <div class="form-group mb-3">
                             <label>Title</label>

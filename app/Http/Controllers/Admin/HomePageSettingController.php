@@ -32,6 +32,8 @@ class HomePageSettingController extends Controller
             'featured_job_status' => 'required',
             'testimonial_heading' => 'required',
             'testimonial_status' => 'required',
+            'blog_heading' => 'required',
+            'blog_status' => 'required'
         ]);
 
         // Hero Section Background
@@ -103,6 +105,9 @@ class HomePageSettingController extends Controller
 
         $home_page_data->testimonial_heading = $request->testimonial_heading;
         $home_page_data->testimonial_status = $request->testimonial_status;
+
+        $home_page_data->blog_heading = $request->blog_heading;
+        $home_page_data->blog_status = $request->blog_status;
 
         $home_page_data->update();
 

@@ -387,50 +387,48 @@
 
     {{-- Blog Post section --}}
     @if($home_page_data->blog_status == 'Show')
-<div class="blog">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="heading">
-                    <h2>{{ $home_page_data->blog_heading }}</h2>
-                    <p>
-                        {{ $home_page_data->blog_subheading }}
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-
-            @foreach($blog_posts as $item)
-            <div class="col-lg-4 col-md-6">
-                <div class="item">
-                    <div class="photo">
-                        <img src="{{ asset('forntend/uploads/'.$item->photo) }}" alt="" />
-                    </div>
-                    <div class="text">
-                        <h2>
-                            <a href="{{ route('post',$item->slug) }}"
-                                >{{ $item->title }}</a
-                            >
-                        </h2>
-                        <div class="short-des">
-                            <p>
-                                {!! nl2br($item->short_description) !!}
-                            </p>
-                        </div>
-                        <div class="button">
-                            <a href="{{ route('post',$item->slug) }}" class="btn btn-primary"
-                                >Read More</a
-                            >
-                        </div>
+    <div class="blog">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="heading">
+                        <h2>{{ $home_page_data->blog_heading }}</h2>
+                        <p>
+                            {{ $home_page_data->blog_subheading }}
+                        </p>
                     </div>
                 </div>
             </div>
-            @endforeach
+            <div class="row">
 
-
+                @foreach($blog_posts as $item)
+                <div class="col-lg-4 col-md-6">
+                    <div class="item">
+                        <div class="photo">
+                            <img src="{{ asset('forntend/uploads/'.$item->photo) }}" alt="" />
+                        </div>
+                        <div class="text">
+                            <h2>
+                                <a href="{{ route('post',$item->slug) }}"
+                                    >{{ $item->title }}</a
+                                >
+                            </h2>
+                            <div class="short-des">
+                                <p>
+                                    {!! nl2br($item->short_description) !!}
+                                </p>
+                            </div>
+                            <div class="button">
+                                <a href="{{ route('post',$item->slug) }}" class="btn btn-primary"
+                                    >Read More</a
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
         </div>
     </div>
-</div>
-@endif
+    @endif
 @endsection

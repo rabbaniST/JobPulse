@@ -7,9 +7,8 @@
             name="viewport"
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
-
-        <meta name="description" content="" />
-        <title>Job Pulse</title>
+        <meta name="description" content="@yield('seo_meta_description')">
+        <title>@yield('seo_title')</title>
 
         <link rel="icon" type="image/png" href="{{asset("forntend/uploads/favicon.png")}}" />
 
