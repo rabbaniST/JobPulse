@@ -15,12 +15,14 @@ use App\Http\Controllers\Admin\JobCategoryController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Forntend\ForntFaqController;
 use App\Http\Controllers\Admin\HomePageSettingController;
+use App\Http\Controllers\Admin\PrivacyPolicyController;
 use App\Http\Controllers\Admin\TermController;
 use App\Http\Controllers\Forntend\ForntJobCategoryController;
-
+use App\Http\Controllers\Forntend\PrivacyPageController;
 
 Route::get('/',[HomeController::class, 'index'])->name('home');
 Route::get('terms-of-use', [TermsController::class, 'index'])->name('terms');
+Route::get('privacy-policy', [PrivacyPageController::class, 'index'])->name('privacy');
 Route::get('/job-categories',[ForntJobCategoryController::class, 'categories'])->name('job_categories');
 Route::get('/blog', [PostController::class, 'index'])->name('blog');
 Route::get('post/{slug}', [PostController::class, 'detail'])->name('post');
@@ -40,11 +42,14 @@ Route::middleware(['admin:admin'])->group(function () {
     Route::get('/admin/term-page', [TermController::class, 'index'])->name('admin_term_page');
     Route::post('/admin/term-page/update', [TermController::class, 'update'])->name('admin_term_page_update');
 
+    Route::get('/admin/privacy-page', [PrivacyPolicyController::class, 'index'])->name('admin_privacy_policy');
+    Route::post('/admin/privacy-page/update', [PrivacyPolicyController::class, 'update'])->name('admin_privacy_policy_update');
+
     // Admin Dashboard Route and middleware
     Route::get('/admin/dashboard', [DashboardController::class, 'dashboard'])->name('admin_dashboard');
     Route::get('/admin/edit-profile', [ProfileController::class, 'index'])->name('admin_profile');
     Route::post('/admin/profile-submit', [ProfileController::class, 'profileSubmit'])->name('admin_profile_submit');
-    Route::get('/admin/home-page/setting', [HomePageSettingController::class, 'index'])->name('home_page_setting');
+    Route::get('/admin/home-page', [HomePageSettingController::class, 'index'])->name('home_page_setting');
     Route::post('/admin/home-page/update', [HomePageSettingController::class, 'update'])->name('home_page_update');
 
     // job category routes
