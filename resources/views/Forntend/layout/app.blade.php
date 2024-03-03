@@ -63,5 +63,41 @@
         </div>
 
     <script src="{{asset("forntend/js/custom.js")}}"></script>
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+
+        <script>
+            iziToast.error({
+                title: '',
+                message: '{{ $error }}',
+                position: 'topRight'
+            });
+        </script>
+
+        @endforeach
+    @endif
+
+    {{-- For single error --}}
+    @if (session()->get('error'))
+    <script>
+        iziToast.error({
+            title: '',
+            message: '{{ session()->get('error') }}',
+            position: 'topRight'
+        });
+    </script>
+    @endif
+
+    {{-- For Success --}}
+    @if (session()->get('success'))
+    <script>
+        iziToast.success({
+            title: '',
+            message: '{{ session()->get('success') }}',
+            position: 'topRight'
+        });
+    </script>
+    @endif
+
     </body>
 </html>

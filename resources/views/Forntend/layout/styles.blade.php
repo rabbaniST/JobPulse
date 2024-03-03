@@ -9,3 +9,4 @@
 <link rel="stylesheet" href="{{asset('forntend/css/meanmenu.css')}}" />
 <link rel="stylesheet" href="{{asset('forntend/css/spacing.css')}}" />
 <link rel="stylesheet" href="{{asset('forntend/css/style.css')}}" />
+<link rel="stylesheet" href="{{asset('forntend/css/iziToast.min.css')}}">

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\BlogPageItem;
 use Illuminate\Http\Request;
 
-class BlogPageController extends Controller
+class BlogPageController extends Controller!
 {
     public function index()
     {

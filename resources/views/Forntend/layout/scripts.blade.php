@@ -10,3 +10,4 @@
         <script src="{{asset('forntend/js/moment.min.js')}}"></script>
         <script src="{{asset('forntend/js/jquery.meanmenu.js')}}"></script>
         <script src="{{asset('forntend/tinymce/tinymce.min.js')}}"></script>
+        <script src="{{asset('forntend/js/iziToast.min.js')}}"></script>

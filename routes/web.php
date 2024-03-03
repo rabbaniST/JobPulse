@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\TermController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\FaqPageController;
 use App\Http\Controllers\Admin\ProfileController;
@@ -11,14 +12,15 @@ use App\Http\Controllers\Admin\BlogPostController;
 use App\Http\Controllers\Forntend\TermsController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\WhyChooseController;
+use App\Http\Controllers\Admin\ContactPageController;
 use App\Http\Controllers\Admin\JobCategoryController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Forntend\ForntFaqController;
-use App\Http\Controllers\Admin\HomePageSettingController;
 use App\Http\Controllers\Admin\PrivacyPolicyController;
-use App\Http\Controllers\Admin\TermController;
-use App\Http\Controllers\Forntend\ForntJobCategoryController;
 use App\Http\Controllers\Forntend\PrivacyPageController;
+use App\Http\Controllers\Admin\HomePageSettingController;
+use App\Http\Controllers\Forntend\ForntContactPageConroller;
+use App\Http\Controllers\Forntend\ForntJobCategoryController;
 
 Route::get('/',[HomeController::class, 'index'])->name('home');
 Route::get('terms-of-use', [TermsController::class, 'index'])->name('terms');
@@ -27,6 +29,8 @@ Route::get('/job-categories',[ForntJobCategoryController::class, 'categories'])-
 Route::get('/blog', [PostController::class, 'index'])->name('blog');
 Route::get('post/{slug}', [PostController::class, 'detail'])->name('post');
 Route::get('faq', [ForntFaqController::class, 'index'])->name('faq');
+Route::get('contact-page', [ForntContactPageConroller::class, 'index'])->name('contact');
+Route::post('contact/submit', [ForntContactPageConroller::class, 'submit'])->name('contact_submit');
 
 
 // Admin Group routes
@@ -45,6 +49,8 @@ Route::middleware(['admin:admin'])->group(function () {
     Route::get('/admin/privacy-page', [PrivacyPolicyController::class, 'index'])->name('admin_privacy_policy');
     Route::post('/admin/privacy-page/update', [PrivacyPolicyController::class, 'update'])->name('admin_privacy_policy_update');
 
+    Route::get('/admin/contact-page', [ContactPageController::class, 'index'])->name('admin_contact_page');
+    Route::post('/admin/contact-page/update', [ContactPageController::class, 'update'])->name('admin_contact_page_update');
     // Admin Dashboard Route and middleware
     Route::get('/admin/dashboard', [DashboardController::class, 'dashboard'])->name('admin_dashboard');
     Route::get('/admin/edit-profile', [ProfileController::class, 'index'])->name('admin_profile');
