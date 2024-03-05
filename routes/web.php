@@ -19,8 +19,12 @@ use App\Http\Controllers\Forntend\ForntFaqController;
 use App\Http\Controllers\Admin\PrivacyPolicyController;
 use App\Http\Controllers\Forntend\PrivacyPageController;
 use App\Http\Controllers\Admin\HomePageSettingController;
+use App\Http\Controllers\Admin\OtherPageController;
+use App\Http\Controllers\Forntend\ForgetPageController;
 use App\Http\Controllers\Forntend\ForntContactPageConroller;
 use App\Http\Controllers\Forntend\ForntJobCategoryController;
+use App\Http\Controllers\Forntend\LoginPageController;
+use App\Http\Controllers\Forntend\SignupPageController;
 
 Route::get('/',[HomeController::class, 'index'])->name('home');
 Route::get('terms-of-use', [TermsController::class, 'index'])->name('terms');
@@ -31,26 +35,39 @@ Route::get('post/{slug}', [PostController::class, 'detail'])->name('post');
 Route::get('faq', [ForntFaqController::class, 'index'])->name('faq');
 Route::get('contact-page', [ForntContactPageConroller::class, 'index'])->name('contact');
 Route::post('contact/submit', [ForntContactPageConroller::class, 'submit'])->name('contact_submit');
+// login and signup page routes
+Route::get('login', [LoginPageController::class, 'index'])->name('login');
+Route::get('create-account', [SignupPageController::class, 'index'])->name('signup');
+Route::get('forget-password', [ForgetPageController::class, 'index'])->name('forget_password');
 
 
 // Admin Group routes
 Route::middleware(['admin:admin'])->group(function () {
 
-
+    //Blog Page Routes
     Route::get('/admin/blog-page', [BlogPageController::class, 'index'])->name('admin_blog_page');
     Route::post('/admin/blog-page/update', [BlogPageController::class, 'update'])->name('admin_blog_page_update');
 
+    //Faq Page Routes
     Route::get('/admin/faq-page', [FaqPageController::class, 'index'])->name('admin_faq_page');
     Route::post('/admin/faq-page/update', [FaqPageController::class, 'update'])->name('admin_faq_page_update');
 
+    //Terms Page Routes
     Route::get('/admin/term-page', [TermController::class, 'index'])->name('admin_term_page');
     Route::post('/admin/term-page/update', [TermController::class, 'update'])->name('admin_term_page_update');
 
+    //Privacy Page Routes
     Route::get('/admin/privacy-page', [PrivacyPolicyController::class, 'index'])->name('admin_privacy_policy');
     Route::post('/admin/privacy-page/update', [PrivacyPolicyController::class, 'update'])->name('admin_privacy_policy_update');
 
+    //Contact Page Routes
     Route::get('/admin/contact-page', [ContactPageController::class, 'index'])->name('admin_contact_page');
     Route::post('/admin/contact-page/update', [ContactPageController::class, 'update'])->name('admin_contact_page_update');
+
+    // Other Page routes
+    Route::get('/admin/other-page', [OtherPageController::class, 'index'])->name('admin_other_page');
+    Route::post('/admin/other-page/update', [OtherPageController::class, 'update'])->name('admin_other_page_update');
+
     // Admin Dashboard Route and middleware
     Route::get('/admin/dashboard', [DashboardController::class, 'dashboard'])->name('admin_dashboard');
     Route::get('/admin/edit-profile', [ProfileController::class, 'index'])->name('admin_profile');

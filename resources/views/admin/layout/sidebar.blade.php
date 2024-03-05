@@ -36,6 +36,9 @@
                     <li class="{{ Request::is('admin/job-category') ? 'active' : '' }}"><a class="nav-link"
                             href="{{ route('admin_job_category') }}"><i class="fas fa-angle-right"></i> Job
                             Catagory</a></li>
+
+                    <li class="{{ Request::is('admin/other-page') ? 'active' : '' }}"><a class="nav-link"
+                            href="{{ route('admin_other_page') }}"><i class="fas fa-angle-right"></i>Other Page</a></li>
                 </ul>
             </li>
 
@@ -68,7 +71,8 @@
             </li>
             <li class="{{ Request::is('admin/faq/*') ? 'active' : '' }}"><a class="nav-link"
                     href="{{ route('admin_faq') }}" data-bs-toggle="tooltip" data-bs-placement="right"
-                    data-bs-title="FAQs"><i class="fas fa-hand-point-right"></i> <span>FAQ</span></a></li>
+                    data-bs-title="FAQs"><i class="fas fa-hand-point-right"></i> <span>FAQ</span></a>
+            </li>
         </ul>
     </aside>
 </div>

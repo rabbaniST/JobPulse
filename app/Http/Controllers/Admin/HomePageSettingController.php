@@ -17,7 +17,7 @@ class HomePageSettingController extends Controller
     public function update(Request $request)
     {
         $home_page_data = HomePageItem::where('id', 1)->first();
-        $request->validate([
+        $validation = $request->validate([
             'heading' => 'required',
             'text' => 'nullable',
             'job_title' => 'required',
@@ -33,7 +33,9 @@ class HomePageSettingController extends Controller
             'testimonial_heading' => 'required',
             'testimonial_status' => 'required',
             'blog_heading' => 'required',
-            'blog_status' => 'required'
+            'blog_status' => 'required',
+            'title' => 'required',
+            'meta_description' => 'required',
         ]);
 
         // Hero Section Background
@@ -84,7 +86,6 @@ class HomePageSettingController extends Controller
             $home_page_data->testimonial_background = $final_name;
         }
 
-
         $home_page_data->heading = $request->heading;
         $home_page_data->text = $request->text;
         $home_page_data->job_title = $request->job_title;
@@ -109,6 +110,8 @@ class HomePageSettingController extends Controller
         $home_page_data->blog_heading = $request->blog_heading;
         $home_page_data->blog_status = $request->blog_status;
 
+        $home_page_data->title = $request->title;
+        $home_page_data->meta_description = $request->meta_description;
         $home_page_data->update();
 
         return redirect()->back()->with('success', 'Home Page Information updated Successfullly');

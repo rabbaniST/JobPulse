@@ -38,6 +38,10 @@
                                         data-bs-target="#v-pills-6" type="button" role="tab" aria-controls="v-pills-6"
                                         aria-selected="false">Blog</button>
 
+                                    <button class="nav-link" id="v-pills-7-tab" data-bs-toggle="pill"
+                                        data-bs-target="#v-pills-7" type="button" role="tab" aria-controls="v-pills-6"
+                                        aria-selected="false">Seo Section</button>
+
 
                                 </div>
                                 <div class="col-lg-9 col-md-">
@@ -283,6 +287,25 @@
                                                                 @if ($home_page_data->blog_status == 'Hide') selected @endif>Hide
                                                             </option>
                                                         </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Blog Section End -->
+                                        </div>
+                                        <div class="tab-pane fade" id="v-pills-7" role="tabpanel"
+                                            aria-labelledby="v-pills-7-tab" tabindex="0">
+                                            <!-- Blog Section Start -->
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="mb-4">
+                                                        <label class="form-label">Title *</label>
+                                                        <input type="text" class="form-control" name="title"
+                                                            value="{{ $home_page_data->title }}">
+                                                    </div>
+                                                    <div class="mb-4">
+                                                        <label class="form-label">Sub Heading</label>
+                                                        <input type="text" class="form-control" name="meta_description"
+                                                            value="{{ $home_page_data->meta_description }}">
                                                     </div>
                                                 </div>
                                             </div>
