@@ -40,6 +40,26 @@ Route::get('login', [LoginPageController::class, 'index'])->name('login');
 Route::get('create-account', [SignupPageController::class, 'index'])->name('signup');
 Route::get('forget-password', [ForgetPageController::class, 'index'])->name('forget_password');
 
+/* Company */
+Route::post('company_login_submit', [LoginPageController::class, 'company_login_submit'])->name('company_login_submit');
+Route::post('company_signup_submit', [SignupPageController::class, 'company_signup_submit'])->name('company_signup_submit');
+Route::get('company_signup_verify/{token}/{email}', [SignupPageController::class, 'company_signup_verify'])->name('company_signup_verify');
+Route::get('/company/logout', [LoginPageController::class, 'company_logout'])->name('company_logout');
+Route::get('forget-password/company', [ForgetPageController::class, 'company_forget_password'])->name('company_forget_password');
+Route::post('forget-password/company/submit', [ForgetPageController::class, 'company_forget_password_submit'])->name('company_forget_password_submit');
+Route::get('reset-password/company/{token}/{email}', [ForgetPageController::class, 'company_reset_password'])->name('company_reset_password');
+Route::post('reset-password/company/submit', [ForgetPageController::class, 'company_reset_password_submit'])->name('company_reset_password_submit');
+
+
+/* Candidate */
+Route::post('candidate_login_submit', [LoginPageController::class, 'candidate_login_submit'])->name('candidate_login_submit');
+Route::post('candidate_signup_submit', [SignupPageController::class, 'candidate_signup_submit'])->name('candidate_signup_submit');
+Route::get('candidate_signup_verify/{token}/{email}', [SignupPageController::class, 'candidate_signup_verify'])->name('candidate_signup_verify');
+Route::get('/candidate/logout', [LoginPageController::class, 'candidate_logout'])->name('candidate_logout');
+Route::get('forget-password/candidate', [ForgetPageController::class, 'candidate_forget_password'])->name('candidate_forget_password');
+Route::post('forget-password/candidate/submit', [ForgetPageController::class, 'candidate_forget_password_submit'])->name('candidate_forget_password_submit');
+Route::get('reset-password/candidate/{token}/{email}', [ForgetPageController::class, 'candidate_reset_password'])->name('candidate_reset_password');
+Route::post('reset-password/candidate/submit', [ForgetPageController::class, 'candidate_reset_password_submit'])->name('candidate_reset_password_submit');
 
 // Admin Group routes
 Route::middleware(['admin:admin'])->group(function () {

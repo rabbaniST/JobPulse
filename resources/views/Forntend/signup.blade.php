@@ -63,8 +63,7 @@
                             aria-labelledby="pills-home-tab"
                             tabindex="0"
                         >
-                        {{-- {{ route('candidate_signup_submit') }} --}}
-                            <form action="" method="post">
+                            <form action="{{ route('candidate_signup_submit') }}" method="post">
                             @csrf
                             <div class="mb-3">
                                 <label for="" class="form-label">Candidate Name *</label>
@@ -100,7 +99,7 @@
                             aria-labelledby="pills-profile-tab"
                             tabindex="0"
                         >
-                            <form action="" method="post">
+                            <form action="{{ route('company_signup_submit') }}" method="post">
                             @csrf
                             <div class="mb-3">
                                 <label for="" class="form-label">Company Name *</label>
