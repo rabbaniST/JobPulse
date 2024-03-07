@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminJobLocation;
+use App\Http\Controllers\Admin\AdminJobType;
 use App\Http\Controllers\Admin\AdminPackageController;
 use App\Http\Controllers\Admin\AdminPricingPageController;
 use Illuminate\Support\Facades\Route;
@@ -138,6 +139,14 @@ Route::middleware(['admin:admin'])->group(function () {
     Route::get('/admin/job-location/edit/{id}', [AdminJobLocation::class, 'edit'])->name('admin_job_location_edit');
     Route::post('/admin/job-location/update/{id}', [AdminJobLocation::class, 'update'])->name('admin_job_location_update');
     Route::get('/admin/job-location/delete/{id}', [AdminJobLocation::class, 'delete'])->name('admin_job_location_delete');
+
+    // Admin Job Type route
+    Route::get('/admin/job-type/view', [AdminJobType::class, 'index'])->name('admin_job_type');
+    Route::get('/admin/job-type/create', [AdminJobType::class, 'create'])->name('admin_job_type_create');
+    Route::post('/admin/job-type/store', [AdminJobType::class, 'store'])->name('admin_job_type_store');
+    Route::get('/admin/job-type/edit/{id}', [AdminJobType::class, 'edit'])->name('admin_job_type_edit');
+    Route::post('/admin/job-type/update/{id}', [AdminJobType::class, 'update'])->name('admin_job_type_update');
+    Route::get('/admin/job-type/delete/{id}', [AdminJobType::class, 'delete'])->name('admin_job_type_delete');
 
     // Why Choose Section routes
     Route::get('/admin/why-choose', [WhyChooseController::class, 'index'])->name('admin_why_choose');
