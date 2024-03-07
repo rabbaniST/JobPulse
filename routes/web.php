@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminJobExperience;
+use App\Http\Controllers\Admin\AdminJobGender;
 use App\Http\Controllers\Admin\AdminJobLocation;
 use App\Http\Controllers\Admin\AdminJobType;
 use App\Http\Controllers\Admin\AdminPackageController;
@@ -156,6 +157,15 @@ Route::middleware(['admin:admin'])->group(function () {
     Route::get('/admin/job-experience/edit/{id}', [AdminJobExperience::class, 'edit'])->name('admin_job_experience_edit');
     Route::post('/admin/job-experience/update/{id}', [AdminJobExperience::class, 'update'])->name('admin_job_experience_update');
     Route::get('/admin/job-experience/delete/{id}', [AdminJobExperience::class, 'delete'])->name('admin_job_experience_delete');
+
+    // Admin job gender routes
+    Route::get('/admin/job-gender/view', [AdminJobGender::class, 'index'])->name('admin_job_gender');
+    Route::get('/admin/job-gender/create', [AdminJobGender::class, 'create'])->name('admin_job_gender_create');
+    Route::post('/admin/job-gender/store', [AdminJobGender::class, 'store'])->name('admin_job_gender_store');
+    Route::get('/admin/job-gender/edit/{id}', [AdminJobGender::class, 'edit'])->name('admin_job_gender_edit');
+    Route::post('/admin/job-gender/update/{id}', [AdminJobGender::class, 'update'])->name('admin_job_gender_update');
+    Route::get('/admin/job-gender/delete/{id}', [AdminJobGender::class, 'delete'])->name('admin_job_gender_delete');
+
     // Why Choose Section routes
     Route::get('/admin/why-choose', [WhyChooseController::class, 'index'])->name('admin_why_choose');
     Route::get('/admin/why-choose/create', [WhyChooseController::class, 'create'])->name('admin_why_choose_create');
