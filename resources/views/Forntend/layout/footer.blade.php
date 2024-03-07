@@ -39,7 +39,7 @@
                         <div class="left">
                             <i class="fas fa-phone"></i>
                         </div>
-                        <div class="right">contact@arefindev.com</div>
+                        <div class="right">contact@rabbanidev.com</div>
                     </div>
                     <div class="list-item">
                         <div class="left">

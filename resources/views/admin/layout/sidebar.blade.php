@@ -43,15 +43,14 @@
                 </ul>
             </li>
 
-            <li class="nav-item dropdown {{ Request::is('admin/job-category') ? 'active' : '' }}">
+            <li class="nav-item dropdown {{ Request::is('admin/job-category')||Request::is('admin/job-location/*') ? 'active' : '' }}">
                 <a href="{{ route('admin_job_category') }}" class="nav-link has-dropdown"><i
                         class="fas fa-hand-point-right"></i><span>Job Section</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ Request::is('admin/job-category') ? 'active' : ' ' }}"><a class="nav-link"
                             href="{{ route('admin_job_category') }}"><i class="fas fa-angle-right"></i>Job Category</a>
                     </li>
-                    <li class=""><a class="nav-link" href=""><i class="fas fa-angle-right"></i>Job
-                            Location</a></li>
+                    <li class="{{ Request::is('admin/job-location/*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_job_location') }}"><i class="fas fa-angle-right"></i> Job Location</a></li>
                 </ul>
             </li>
 
@@ -70,7 +69,7 @@
                     href="{{ route('admin_blog_post') }}" data-bs-toggle="tooltip" data-bs-placement="right"
                     data-bs-title="Blog Post"><i class="fas fa-hand-point-right"></i> <span>Blog Post</span></a>
             </li>
-            
+
             <li class="{{ Request::is('admin/package/*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('admin_package') }}" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Packages"><i class="fas fa-hand-point-right"></i> <span>Package</span></a></li>
 
             <li class="{{ Request::is('admin/faq/*') ? 'active' : '' }}"><a class="nav-link"
