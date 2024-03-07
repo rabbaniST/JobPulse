@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminJobExperience;
 use App\Http\Controllers\Admin\AdminJobGender;
 use App\Http\Controllers\Admin\AdminJobLocation;
+use App\Http\Controllers\Admin\AdminJobSalaryRange;
 use App\Http\Controllers\Admin\AdminJobType;
 use App\Http\Controllers\Admin\AdminPackageController;
 use App\Http\Controllers\Admin\AdminPricingPageController;
@@ -165,6 +166,14 @@ Route::middleware(['admin:admin'])->group(function () {
     Route::get('/admin/job-gender/edit/{id}', [AdminJobGender::class, 'edit'])->name('admin_job_gender_edit');
     Route::post('/admin/job-gender/update/{id}', [AdminJobGender::class, 'update'])->name('admin_job_gender_update');
     Route::get('/admin/job-gender/delete/{id}', [AdminJobGender::class, 'delete'])->name('admin_job_gender_delete');
+
+    // Admin Job Salary Routes
+    Route::get('/admin/job-salary-range/view', [AdminJobSalaryRange::class, 'index'])->name('admin_job_salary_range');
+    Route::get('/admin/job-salary-range/create', [AdminJobSalaryRange::class, 'create'])->name('admin_job_salary_range_create');
+    Route::post('/admin/job-salary-range/store', [AdminJobSalaryRange::class, 'store'])->name('admin_job_salary_range_store');
+    Route::get('/admin/job-salary-range/edit/{id}', [AdminJobSalaryRange::class, 'edit'])->name('admin_job_salary_range_edit');
+    Route::post('/admin/job-salary-range/update/{id}', [AdminJobSalaryRange::class, 'update'])->name('admin_job_salary_range_update');
+    Route::get('/admin/job-salary-range/delete/{id}', [AdminJobSalaryRange::class, 'delete'])->name('admin_job_salary_range_delete');
 
     // Why Choose Section routes
     Route::get('/admin/why-choose', [WhyChooseController::class, 'index'])->name('admin_why_choose');
