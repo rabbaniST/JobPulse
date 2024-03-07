@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\Admin\AdminPackageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\TermController;
@@ -37,6 +39,8 @@ Route::get('post/{slug}', [PostController::class, 'detail'])->name('post');
 Route::get('faq', [ForntFaqController::class, 'index'])->name('faq');
 Route::get('contact-page', [ForntContactPageConroller::class, 'index'])->name('contact');
 Route::post('contact/submit', [ForntContactPageConroller::class, 'submit'])->name('contact_submit');
+Route::get('pricing', [AdminPackageController::class, 'index'])->name('pricing');
+
 // login and signup page routes
 Route::get('login', [LoginPageController::class, 'index'])->name('login');
 Route::get('create-account', [SignupPageController::class, 'index'])->name('signup');
@@ -93,9 +97,14 @@ Route::middleware(['admin:admin'])->group(function () {
     Route::get('/admin/contact-page', [ContactPageController::class, 'index'])->name('admin_contact_page');
     Route::post('/admin/contact-page/update', [ContactPageController::class, 'update'])->name('admin_contact_page_update');
 
+    // Pricing Page Routes
+    Route::get('/admin/pricing-page', [AdminPackageController::class, 'index'])->name('admin_pricing_page');
+    Route::post('/admin/pricing-page/update', [AdminPackageController::class, 'update'])->name('admin_pricing_page_update');
+
     // Other Page routes
     Route::get('/admin/other-page', [OtherPageController::class, 'index'])->name('admin_other_page');
     Route::post('/admin/other-page/update', [OtherPageController::class, 'update'])->name('admin_other_page_update');
+
 
     // Admin Dashboard Route and middleware
     Route::get('/admin/dashboard', [DashboardController::class, 'dashboard'])->name('admin_dashboard');
