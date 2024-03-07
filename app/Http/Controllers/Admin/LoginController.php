@@ -6,6 +6,7 @@ use App\Models\Admin;
 use App\Mail\VerifyMail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\OtherPageItem;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -13,100 +14,69 @@ use Illuminate\Support\Facades\Mail;
 
 class LoginController extends Controller
 {
+        public function index()
+        {
+            if(Auth::guard('candidate')->check()) {
+                return redirect()->route('candidate_dashboard');
+            }
 
-    // Admin Simple login methods
+            if(Auth::guard('company')->check()) {
+                return redirect()->route('company_dashboard');
+            }
 
-    public function login()
-    {
-        return view('admin.login');
-    }
-
-    public function forgetPassword()
-    {
-        return view('admin.forget_password');
-    }
-
-
-    // Admin foget password and send email notification to users email
-    public function forgetPasswordSubmit(Request $request)
-    {
-        $request->validate([
-            'email'    => 'required|email'
-        ]);
-
-        $data = Admin::where('email', $request->email)->first();
-        if (!$data) {
-            return redirect()->back()->with(['error' => 'Email is not valid']);
+            $other_page_item = OtherPageItem::where('id',1)->first();
+            return view('front.login', compact('other_page_item'));
         }
 
-        $token = hash('sha256', time());
-        $data->token = $token;
-        $data->update();
+        public function company_login_submit(Request $request)
+        {
+            $request->validate([
+                'username' => 'required',
+                'password' => 'required'
+            ]);
 
-        $reset_link = url('admin/reset-password/' . $token . '/' . $request->email);
-        $subject = 'Reset Password';
-        $message = 'Please click on the following link: </br>';
-        $message .= '<a href="' . $reset_link . '">Click Me</a>';
+            $credential = [
+                'username' => $request->username,
+                'password' => $request->password,
+                'status' => 1
+            ];
 
-        Mail::to($request->email)->send(new VerifyMail($subject,$message));
-
-        return redirect()->route('admin_login')->with('success', 'Please check your email and follow the steps there.');
-    }
-
-    // Admin Login submit and redirect to admin dashboard
-    public function loginSubmit(Request $request)
-    {
-        $this->validate($request, [
-            'email'    => 'required|email',
-            'password' => 'required',
-        ]);
-
-        $credentials = $request->only('email', 'password');
-
-        if (Auth::guard('admin')->attempt($credentials)) {
-            return redirect()->route('admin_dashboard');
-        } else {
-            return redirect()->route('admin_login')->with(['error' => 'Information is not correct']);
+            if(Auth::guard('company')->attempt($credential)) {
+                return redirect()->route('company_dashboard');
+            } else {
+                return redirect()->route('login')->with('error', 'Information is not correct!');
+            }
         }
-    }
 
-
-    // Admin Logout Methods
-    public function logout()
-    {
-        Auth::guard('admin')->logout();
-        return redirect()->route('admin_login');
-    }
-
-
-    // Admin password reset for get methods
-    public function resetPassword($token, $email)
-    {
-        $data = Admin::where('token', $token)->where('email', $email)->first();
-
-        if(!$data){
-             return redirect()->route('admin_login');
+        public function company_logout()
+        {
+            Auth::guard('company')->logout();
+            return redirect()->route('login');
         }
-        return view('admin.reset_password', compact('token', 'email'));
-    }
 
+        public function candidate_login_submit(Request $request)
+        {
+            $request->validate([
+                'username' => 'required',
+                'password' => 'required'
+            ]);
 
+            $credential = [
+                'username' => $request->username,
+                'password' => $request->password,
+                'status' => 1
+            ];
 
-    // Admin Password Reset and update
+            if(Auth::guard('candidate')->attempt($credential)) {
+                return redirect()->route('candidate_dashboard');
+            } else {
+                return redirect()->route('login')->with('error', 'Information is not correct!');
+            }
+        }
 
-     public function resetPasswordSubmit(Request $request)
-    {
-        $request->validate([
-            'password' => 'required',
-            'retype_password' => 'required|same:password',
-        ]);
-
-        $data  = Admin::where('token', $request->token)->where('email', $request->email)->first();
-
-        $data->password = Hash::make($request->password);
-        $data->token = '';
-        $data->update();
-
-        return redirect()->route('admin_login')->with('success', 'Password is reset Successfully ');
-    }
+        public function candidate_logout()
+        {
+            Auth::guard('candidate')->logout();
+            return redirect()->route('login');
+        }
 }

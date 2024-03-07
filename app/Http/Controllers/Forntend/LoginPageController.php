@@ -52,24 +52,26 @@ class LoginPageController extends Controller
     }
 
     public function candidate_login_submit(Request $request)
-    {
-        $request->validate([
-            'username' => 'required',
-            'password' => 'required'
-        ]);
+{
+    $request->validate([
+        'username' => 'required',
+        'password' => 'required'
+    ]);
 
-        $credential = [
-            'username' => $request->username,
-            'password' => $request->password,
-            'status' => 1
-        ];
+    $credentials = [
+        'username' => $request->username,
+        'password' => $request->password,
+        'status' => 1
+    ];
 
-        if (Auth::guard('candidate')->attempt($credential)) {
-            return redirect()->route('candidate_dashboard');
-        } else {
-            return redirect()->route('login')->with('error', 'Information is not correct!');
-        }
+    if (Auth::guard('candidate')->attempt($credentials)) {
+        // Authentication successful
+        return redirect()->route('candidate_dashboard');
+    } else {
+        // Authentication failed
+        return redirect()->route('login')->with('error', 'Incorrect information. Please try again.');
     }
+}
 
     public function candidate_logout()
     {

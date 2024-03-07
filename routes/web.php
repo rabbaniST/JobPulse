@@ -20,6 +20,8 @@ use App\Http\Controllers\Admin\PrivacyPolicyController;
 use App\Http\Controllers\Forntend\PrivacyPageController;
 use App\Http\Controllers\Admin\HomePageSettingController;
 use App\Http\Controllers\Admin\OtherPageController;
+use App\Http\Controllers\Candidate\CandidateController;
+use App\Http\Controllers\Companay\CompnayController;
 use App\Http\Controllers\Forntend\ForgetPageController;
 use App\Http\Controllers\Forntend\ForntContactPageConroller;
 use App\Http\Controllers\Forntend\ForntJobCategoryController;
@@ -50,7 +52,10 @@ Route::post('forget-password/company/submit', [ForgetPageController::class, 'com
 Route::get('reset-password/company/{token}/{email}', [ForgetPageController::class, 'company_reset_password'])->name('company_reset_password');
 Route::post('reset-password/company/submit', [ForgetPageController::class, 'company_reset_password_submit'])->name('company_reset_password_submit');
 
-
+// Companay Milldleware Routes
+Route::middleware(['company:company'])->group(function() {
+    Route::get('/company/dashboard', [CompnayController::class, 'dashboard'])->name('company_dashboard');
+});
 /* Candidate */
 Route::post('candidate_login_submit', [LoginPageController::class, 'candidate_login_submit'])->name('candidate_login_submit');
 Route::post('candidate_signup_submit', [SignupPageController::class, 'candidate_signup_submit'])->name('candidate_signup_submit');
@@ -61,6 +66,10 @@ Route::post('forget-password/candidate/submit', [ForgetPageController::class, 'c
 Route::get('reset-password/candidate/{token}/{email}', [ForgetPageController::class, 'candidate_reset_password'])->name('candidate_reset_password');
 Route::post('reset-password/candidate/submit', [ForgetPageController::class, 'candidate_reset_password_submit'])->name('candidate_reset_password_submit');
 
+// Candidate Milldleware Routes
+Route::middleware(['candidate:candidate'])->group(function() {
+    Route::get('/candidate/dashboard', [CandidateController::class, 'dashboard'])->name('candidate_dashboard');
+});
 // Admin Group routes
 Route::middleware(['admin:admin'])->group(function () {
 
