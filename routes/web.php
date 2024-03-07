@@ -25,6 +25,7 @@ use App\Http\Controllers\Admin\HomePageSettingController;
 use App\Http\Controllers\Admin\OtherPageController;
 use App\Http\Controllers\Candidate\CandidateController;
 use App\Http\Controllers\Companay\CompnayController;
+use App\Http\Controllers\Company\CompanyController;
 use App\Http\Controllers\Forntend\ForgetPageController;
 use App\Http\Controllers\Forntend\ForntContactPageConroller;
 use App\Http\Controllers\Forntend\ForntJobCategoryController;
@@ -60,7 +61,13 @@ Route::post('reset-password/company/submit', [ForgetPageController::class, 'comp
 
 // Companay Milldleware Routes
 Route::middleware(['company:company'])->group(function() {
-    Route::get('/company/dashboard', [CompnayController::class, 'dashboard'])->name('company_dashboard');
+    Route::get('/company/dashboard', [CompanyController::class, 'dashboard'])->name('company_dashboard');
+    Route::get('/company/make-payment', [CompanyController::class, 'make_payment'])->name('company_make_payment');
+    Route::get('/company/orders', [CompanyController::class, 'orders'])->name('company_orders');
+
+    Route::post('/company/paypal/payment', [CompanyController::class, 'paypal'])->name('company_paypal');
+    Route::get('/company/paypal/success', [CompanyController::class, 'paypal_success'])->name('company_paypal_success');
+    Route::get('/company/paypal/cancel', [CompanyController::class, 'paypal_cancel'])->name('company_paypal_cancel');
 });
 /* Candidate */
 Route::post('candidate_login_submit', [LoginPageController::class, 'candidate_login_submit'])->name('candidate_login_submit');
