@@ -8,7 +8,7 @@
 </div>
 @endsection
 
-@section('main-content')
+@section('content')
 <div class="section-body">
     <div class="row">
         <div class="col-12">

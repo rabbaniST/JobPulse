@@ -11,12 +11,12 @@ class AdminPackageController extends Controller
     public function index()
     {
         $packages = Package::get();
-        return view('admin.package', compact('packages'));
+        return view('admin.pages.package.package', compact('packages'));
     }
 
     public function create()
     {
-        return view('admin.package_create');
+        return view('admin.pages.package.package_create');
     }
 
     public function store(Request $request)
@@ -50,7 +50,7 @@ class AdminPackageController extends Controller
     public function edit($id)
     {
         $package_single = Package::where('id',$id)->first();
-        return view('admin.package_edit',compact('package_single'));
+        return view('admin.pages.package.package_edit',compact('package_single'));
     }
 
     public function update(Request $request, $id)

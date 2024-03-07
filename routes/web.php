@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminPackageController;
+use App\Http\Controllers\Admin\AdminPricingPageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\TermController;
@@ -28,6 +29,7 @@ use App\Http\Controllers\Forntend\ForgetPageController;
 use App\Http\Controllers\Forntend\ForntContactPageConroller;
 use App\Http\Controllers\Forntend\ForntJobCategoryController;
 use App\Http\Controllers\Forntend\LoginPageController;
+use App\Http\Controllers\Forntend\PricingPageController;
 use App\Http\Controllers\Forntend\SignupPageController;
 
 Route::get('/',[HomeController::class, 'index'])->name('home');
@@ -39,7 +41,7 @@ Route::get('post/{slug}', [PostController::class, 'detail'])->name('post');
 Route::get('faq', [ForntFaqController::class, 'index'])->name('faq');
 Route::get('contact-page', [ForntContactPageConroller::class, 'index'])->name('contact');
 Route::post('contact/submit', [ForntContactPageConroller::class, 'submit'])->name('contact_submit');
-Route::get('pricing', [AdminPackageController::class, 'index'])->name('pricing');
+Route::get('pricing', [PricingPageController::class, 'index'])->name('pricing');
 
 // login and signup page routes
 Route::get('login', [LoginPageController::class, 'index'])->name('login');
@@ -98,8 +100,8 @@ Route::middleware(['admin:admin'])->group(function () {
     Route::post('/admin/contact-page/update', [ContactPageController::class, 'update'])->name('admin_contact_page_update');
 
     // Pricing Page Routes
-    Route::get('/admin/pricing-page', [AdminPackageController::class, 'index'])->name('admin_pricing_page');
-    Route::post('/admin/pricing-page/update', [AdminPackageController::class, 'update'])->name('admin_pricing_page_update');
+    Route::get('/admin/pricing-page', [AdminPricingPageController::class, 'index'])->name('admin_pricing_page');
+    Route::post('/admin/pricing-page/update', [AdminPricingPageController::class, 'update'])->name('admin_pricing_page_update');
 
     // Other Page routes
     Route::get('/admin/other-page', [OtherPageController::class, 'index'])->name('admin_other_page');
@@ -144,6 +146,14 @@ Route::middleware(['admin:admin'])->group(function () {
     Route::get('/admin/blog-post/edit/{id}', [BlogPostController::class, 'edit'])->name('admin_blog_post_edit');
     Route::post('/admin/blog-post/update/{id}', [BlogPostController::class, 'update'])->name('admin_blog_post_update');
     Route::get('/admin/blog-post/delete/{id}', [BlogPostController::class, 'delete'])->name('admin_blog_post_delete');
+
+    // Pricing service routes
+    Route::get('/admin/package/view', [AdminPackageController::class, 'index'])->name('admin_package');
+    Route::get('/admin/package/create', [AdminPackageController::class, 'create'])->name('admin_package_create');
+    Route::post('/admin/package/store', [AdminPackageController::class, 'store'])->name('admin_package_store');
+    Route::get('/admin/package/edit/{id}', [AdminPackageController::class, 'edit'])->name('admin_package_edit');
+    Route::post('/admin/package/update/{id}', [AdminPackageController::class, 'update'])->name('admin_package_update');
+    Route::get('/admin/package/delete/{id}', [AdminPackageController::class, 'delete'])->name('admin_package_delete');
 
     // Faq routes
     Route::get('/admin/faq/view', [FaqController::class, 'index'])->name('admin_faq');
