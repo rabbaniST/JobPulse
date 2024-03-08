@@ -1,42 +1,45 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminJobExperience;
-use App\Http\Controllers\Admin\AdminJobGender;
-use App\Http\Controllers\Admin\AdminJobLocation;
-use App\Http\Controllers\Admin\AdminJobSalaryRange;
-use App\Http\Controllers\Admin\AdminJobType;
-use App\Http\Controllers\Admin\AdminPackageController;
-use App\Http\Controllers\Admin\AdminPricingPageController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AdminJobType;
 use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\AdminJobGender;
 use App\Http\Controllers\Admin\TermController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\AdminJobLocation;
 use App\Http\Controllers\Admin\FaqPageController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Forntend\HomeController;
 use App\Http\Controllers\Forntend\PostController;
+use App\Http\Controllers\Admin\AdminJobExperience;
 use App\Http\Controllers\Admin\BlogPageController;
 use App\Http\Controllers\Admin\BlogPostController;
 use App\Http\Controllers\Forntend\TermsController;
+use App\Http\Controllers\Admin\AdminJobSalaryRange;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\OtherPageController;
 use App\Http\Controllers\Admin\WhyChooseController;
+use App\Http\Controllers\Company\CompanyController;
+use App\Http\Controllers\Companay\CompnayController;
 use App\Http\Controllers\Admin\ContactPageController;
 use App\Http\Controllers\Admin\JobCategoryController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Forntend\ForntFaqController;
+use App\Http\Controllers\Admin\AdminPackageController;
+use App\Http\Controllers\Forntend\LoginPageController;
 use App\Http\Controllers\Admin\PrivacyPolicyController;
+use App\Http\Controllers\Candidate\CandidateController;
+use App\Http\Controllers\Forntend\ForgetPageController;
+use App\Http\Controllers\Forntend\SignupPageController;
+use App\Http\Controllers\Forntend\PricingPageController;
 use App\Http\Controllers\Forntend\PrivacyPageController;
 use App\Http\Controllers\Admin\HomePageSettingController;
-use App\Http\Controllers\Admin\OtherPageController;
-use App\Http\Controllers\Candidate\CandidateController;
-use App\Http\Controllers\Companay\CompnayController;
-use App\Http\Controllers\Company\CompanyController;
-use App\Http\Controllers\Forntend\ForgetPageController;
+use App\Http\Controllers\Admin\AdminCompanySizeController;
+use App\Http\Controllers\Admin\AdminPricingPageController;
 use App\Http\Controllers\Forntend\ForntContactPageConroller;
 use App\Http\Controllers\Forntend\ForntJobCategoryController;
-use App\Http\Controllers\Forntend\LoginPageController;
-use App\Http\Controllers\Forntend\PricingPageController;
-use App\Http\Controllers\Forntend\SignupPageController;
+use App\Http\Controllers\Admin\AdminCompanyIndustryController;
+use App\Http\Controllers\Admin\AdminCompanyLocationController;
 
 Route::get('/',[HomeController::class, 'index'])->name('home');
 Route::get('terms-of-use', [TermsController::class, 'index'])->name('terms');
@@ -174,6 +177,30 @@ Route::middleware(['admin:admin'])->group(function () {
     Route::get('/admin/job-salary-range/edit/{id}', [AdminJobSalaryRange::class, 'edit'])->name('admin_job_salary_range_edit');
     Route::post('/admin/job-salary-range/update/{id}', [AdminJobSalaryRange::class, 'update'])->name('admin_job_salary_range_update');
     Route::get('/admin/job-salary-range/delete/{id}', [AdminJobSalaryRange::class, 'delete'])->name('admin_job_salary_range_delete');
+
+    // Admin Compnay location Section Routes
+    Route::get('/admin/company-location/view', [AdminCompanyLocationController::class, 'index'])->name('admin_company_location');
+    Route::get('/admin/company-location/create', [AdminCompanyLocationController::class, 'create'])->name('admin_company_location_create');
+    Route::post('/admin/company-location/store', [AdminCompanyLocationController::class, 'store'])->name('admin_company_location_store');
+    Route::get('/admin/company-location/edit/{id}', [AdminCompanyLocationController::class, 'edit'])->name('admin_company_location_edit');
+    Route::post('/admin/company-location/update/{id}', [AdminCompanyLocationController::class, 'update'])->name('admin_company_location_update');
+    Route::get('/admin/company-location/delete/{id}', [AdminCompanyLocationController::class, 'delete'])->name('admin_company_location_delete');
+
+    // Admin Compnay industry Section Routes
+    Route::get('/admin/company-industry/view', [AdminCompanyIndustryController::class, 'index'])->name('admin_company_industry');
+    Route::get('/admin/company-industry/create', [AdminCompanyIndustryController::class, 'create'])->name('admin_company_industry_create');
+    Route::post('/admin/company-industry/store', [AdminCompanyIndustryController::class, 'store'])->name('admin_company_industry_store');
+    Route::get('/admin/company-industry/edit/{id}', [AdminCompanyIndustryController::class, 'edit'])->name('admin_company_industry_edit');
+    Route::post('/admin/company-industry/update/{id}', [AdminCompanyIndustryController::class, 'update'])->name('admin_company_industry_update');
+    Route::get('/admin/company-industry/delete/{id}', [AdminCompanyIndustryController::class, 'delete'])->name('admin_company_industry_delete');
+
+    // Admin Compnay size Section Routes
+    Route::get('/admin/company-size/view', [AdminCompanySizeController::class, 'index'])->name('admin_company_size');
+    Route::get('/admin/company-size/create', [AdminCompanySizeController::class, 'create'])->name('admin_company_size_create');
+    Route::post('/admin/company-size/store', [AdminCompanySizeController::class, 'store'])->name('admin_company_size_store');
+    Route::get('/admin/company-size/edit/{id}', [AdminCompanySizeController::class, 'edit'])->name('admin_company_size_edit');
+    Route::post('/admin/company-size/update/{id}', [AdminCompanySizeController::class, 'update'])->name('admin_company_size_update');
+    Route::get('/admin/company-size/delete/{id}', [AdminCompanySizeController::class, 'delete'])->name('admin_company_size_delete');
 
     // Why Choose Section routes
     Route::get('/admin/why-choose', [WhyChooseController::class, 'index'])->name('admin_why_choose');

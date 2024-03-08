@@ -22,6 +22,12 @@ class CompanyController extends Controller
         return view('company.make-payment', compact('current_plan','packages'));
     }
 
+    public function orders()
+    {
+        $orders = Order::with('Package')->orderBy('id', 'desc')->where('company_id',Auth::guard('company')->user()->id)->get();
+        return view('company.orders', compact('orders'));
+    }
+
     public function paypal(Request $request)
     {
         $single_package_data = Package::where('id',$request->package_id)->first();
