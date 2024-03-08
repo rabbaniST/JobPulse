@@ -78,6 +78,16 @@ Route::middleware(['company:company'])->group(function() {
     Route::get('/company/edit-password', [CompanyController::class, 'edit_password'])->name('company_edit_password');
     Route::post('/company/edit-password/update', [CompanyController::class, 'edit_password_update'])->name('company_edit_password_update');
 
+    // Compnay Photos routes
+    Route::get('/company/photos', [CompanyController::class, 'photos'])->name('company_photos');
+    Route::post('/company/photos/submit', [CompanyController::class, 'photos_submit'])->name('company_photos_submit');
+    Route::get('/company/photos/delete/{id}', [CompanyController::class, 'photos_delete'])->name('company_photos_delete');
+    
+    // Company Video Routes
+    Route::get('/company/videos', [CompanyController::class, 'videos'])->name('company_videos');
+    Route::post('/company/videos/submit', [CompanyController::class, 'videos_submit'])->name('company_videos_submit');
+    Route::get('/company/videos/delete/{id}', [CompanyController::class, 'videos_delete'])->name('company_videos_delete');
+
     Route::post('/company/paypal/payment', [CompanyController::class, 'paypal'])->name('company_paypal');
     Route::get('/company/paypal/success', [CompanyController::class, 'paypal_success'])->name('company_paypal_success');
     Route::get('/company/paypal/cancel', [CompanyController::class, 'paypal_cancel'])->name('company_paypal_cancel');
