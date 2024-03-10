@@ -20,7 +20,6 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OtherPageController;
 use App\Http\Controllers\Admin\WhyChooseController;
 use App\Http\Controllers\Company\CompanyController;
-use App\Http\Controllers\Companay\CompnayController;
 use App\Http\Controllers\Admin\ContactPageController;
 use App\Http\Controllers\Admin\JobCategoryController;
 use App\Http\Controllers\Admin\TestimonialController;
@@ -82,7 +81,7 @@ Route::middleware(['company:company'])->group(function() {
     Route::get('/company/photos', [CompanyController::class, 'photos'])->name('company_photos');
     Route::post('/company/photos/submit', [CompanyController::class, 'photos_submit'])->name('company_photos_submit');
     Route::get('/company/photos/delete/{id}', [CompanyController::class, 'photos_delete'])->name('company_photos_delete');
-    
+
     // Company Video Routes
     Route::get('/company/videos', [CompanyController::class, 'videos'])->name('company_videos');
     Route::post('/company/videos/submit', [CompanyController::class, 'videos_submit'])->name('company_videos_submit');
@@ -114,6 +113,10 @@ Route::post('reset-password/candidate/submit', [ForgetPageController::class, 'ca
 // Candidate Milldleware Routes
 Route::middleware(['candidate:candidate'])->group(function() {
     Route::get('/candidate/dashboard', [CandidateController::class, 'dashboard'])->name('candidate_dashboard');
+    Route::get('/candidate/edit-profile', [CandidateController::class, 'edit_profile'])->name('candidate_edit_profile');
+    Route::post('/candidate/edit-profile/update', [CandidateController::class, 'edit_profile_update'])->name('candidate_edit_profile_update');
+    Route::get('/candidate/edit-password', [CandidateController::class, 'edit_password'])->name('candidate_edit_password');
+    Route::post('/candidate/edit-password/update', [CandidateController::class, 'edit_password_update'])->name('candidate_edit_password_update');
 });
 // Admin Group routes
 Route::middleware(['admin:admin'])->group(function () {
