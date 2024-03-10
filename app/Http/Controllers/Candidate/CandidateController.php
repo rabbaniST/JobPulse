@@ -8,6 +8,7 @@ use App\Models\CandidateAward;
 use App\Models\CandidateSkill;
 use App\Models\CandidateResume;
 use Illuminate\Validation\Rule;
+use App\Models\CandidateBookmark;
 use App\Models\CandidateEducation;
 use App\Models\CandidateExperience;
 use App\Http\Controllers\Controller;
@@ -423,5 +424,36 @@ class CandidateController extends Controller
         unlink(public_path('uploads/'.$resume_single->file));
         CandidateResume::where('id',$id)->delete();
         return redirect()->route('candidate_resume')->with('success', 'Resume is deleted successfully.');
+    }
+
+    // Candidate Job Bookmark Methods 
+
+    public function bookmark_add($id)
+    {
+        $existing_bookmark_check = CandidateBookmark::where('candidate_id',Auth::guard('candidate')->user()->id)->where('job_id',$id)->count();
+        if($existing_bookmark_check > 0) {
+            return redirect()->back()->with('error', 'This job is already added to the bookmark');
+        }
+
+        $obj = new CandidateBookmark();
+        $obj->candidate_id = Auth::guard('candidate')->user()->id;
+        $obj->job_id = $id;
+        $obj->save();
+
+        return redirect()->back()->with('success', 'Job is added to bookmark section successfully.');
+    }
+
+    public function bookmark_view()
+    {
+        $bookmarked_jobs = CandidateBookmark::with('rJob','rCandidate')->where('candidate_id',Auth::guard('candidate')->user()->id)->get();
+
+        return view('candidate.bookmark', compact('bookmarked_jobs'));
+    }
+
+    public function bookmark_delete($id)
+    {
+        CandidateBookmark::where('id',$id)->delete();
+
+        return redirect()->back()->with('success', 'Bookmark item is deleted successfully.');
     }
 }
