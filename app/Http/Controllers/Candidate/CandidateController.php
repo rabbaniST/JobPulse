@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Candidate;
 
 use App\Models\Candidate;
 use Illuminate\Http\Request;
+use App\Models\CandidateSkill;
 use Illuminate\Validation\Rule;
+use App\Models\CandidateEducation;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -17,6 +19,7 @@ class CandidateController extends Controller
     }
 
 
+    // Candidate Profile Methods
     public function edit_profile()
     {
         return view('candidate.edit-profile');
@@ -88,5 +91,129 @@ class CandidateController extends Controller
         $obj->update();
 
         return redirect()->back()->with('success', 'Password is updated successfully.');
+    }
+
+
+
+    // Candidate Education Methods
+    public function education()
+    {
+        $educations = CandidateEducation::where('candidate_id',Auth::guard('candidate')->user()->id)->orderBy('id','desc')->get();
+        return view('candidate.education', compact('educations'));
+    }
+
+    public function education_create()
+    {
+        return view('candidate.education-create');
+    }
+
+    public function education_store(Request $request)
+    {
+        $request->validate([
+            'level' => 'required',
+            'institute' => 'required',
+            'degree' => 'required',
+            'passing_year' => 'required'
+        ]);
+
+        $obj = new CandidateEducation();
+        $obj->candidate_id = Auth::guard('candidate')->user()->id;
+        $obj->level = $request->level;
+        $obj->institute = $request->institute;
+        $obj->degree = $request->degree;
+        $obj->passing_year = $request->passing_year;
+        $obj->save();
+
+        return redirect()->route('candidate_education')->with('success', 'Education is added successfully.');
+    }
+
+    public function education_edit($id)
+    {
+        $education_single = CandidateEducation::where('id',$id)->first();
+
+        return view('candidate.education-edit', compact('education_single'));
+    }
+
+    public function education_update(Request $request, $id)
+    {
+        $obj = CandidateEducation::where('id',$id)->first();
+
+        $request->validate([
+            'level' => 'required',
+            'institute' => 'required',
+            'degree' => 'required',
+            'passing_year' => 'required'
+        ]);
+        
+        $obj->level = $request->level;
+        $obj->institute = $request->institute;
+        $obj->degree = $request->degree;
+        $obj->passing_year = $request->passing_year;
+        $obj->update();
+
+        return redirect()->route('candidate_education')->with('success', 'Education is updated successfully.');
+    }
+
+    public function education_delete($id)
+    {
+        CandidateEducation::where('id',$id)->delete();
+        return redirect()->route('candidate_education')->with('success', 'Education is deleted successfully.');
+    }
+
+    // Candidate Skill Methods Here
+    public function skill()
+    {
+        $skills = CandidateSkill::where('candidate_id',Auth::guard('candidate')->user()->id)->get();
+        return view('candidate.skill', compact('skills'));
+    }
+
+    public function skill_create()
+    {
+        return view('candidate.skill-create');
+    }
+
+    public function skill_store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'percentage' => 'required'
+        ]);
+
+        $obj = new CandidateSkill();
+        $obj->candidate_id = Auth::guard('candidate')->user()->id;
+        $obj->name = $request->name;
+        $obj->percentage = $request->percentage;
+        $obj->save();
+
+        return redirect()->route('candidate_skill')->with('success', 'Skill is added successfully.');
+    }
+
+    public function skill_edit($id)
+    {
+        $skill_single = CandidateSkill::where('id',$id)->first();
+
+        return view('candidate.skill-edit', compact('skill_single'));
+    }
+
+    public function skill_update(Request $request, $id)
+    {
+        $obj = CandidateSkill::where('id',$id)->first();
+
+        $request->validate([
+            'name' => 'required',
+            'percentage' => 'required'
+        ]);
+        
+        $obj->name = $request->name;
+        $obj->percentage = $request->percentage;
+        $obj->update();
+
+        return redirect()->route('candidate_skill')->with('success', 'Skill is updated successfully.');
+    }
+
+    public function skill_delete($id)
+    {
+        CandidateSkill::where('id',$id)->delete();
+        return redirect()->route('candidate_skill')->with('success', 'Skill is deleted successfully.');
     }
 }
