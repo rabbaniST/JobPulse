@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Candidate;
 
 use App\Models\Candidate;
 use Illuminate\Http\Request;
+use App\Models\CandidateAward;
 use App\Models\CandidateSkill;
+use App\Models\CandidateResume;
 use Illuminate\Validation\Rule;
 use App\Models\CandidateEducation;
 use App\Models\CandidateExperience;
@@ -282,5 +284,144 @@ class CandidateController extends Controller
     {
         CandidateExperience::where('id',$id)->delete();
         return redirect()->route('candidate_experience')->with('success', 'Experience is deleted successfully.');
+    }
+
+
+    // Candidate Awards section Methods
+    public function award()
+    {
+        $awards = CandidateAward::where('candidate_id',Auth::guard('candidate')->user()->id)->orderBy('id','desc')->get();
+        return view('candidate.award', compact('awards'));
+    }
+
+    public function award_create()
+    {
+        return view('candidate.award-create');
+    }
+
+    public function award_store(Request $request)
+    {
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'date' => 'required'
+        ]);
+
+        $obj = new CandidateAward();
+        $obj->candidate_id = Auth::guard('candidate')->user()->id;
+        $obj->title = $request->title;
+        $obj->description = $request->description;
+        $obj->date = $request->date;
+        $obj->save();
+
+        return redirect()->route('candidate_award')->with('success', 'Award is added successfully.');
+    }
+
+    public function award_edit($id)
+    {
+        $award_single = CandidateAward::where('id',$id)->first();
+
+        return view('candidate.award-edit', compact('award_single'));
+    }
+
+    public function award_update(Request $request, $id)
+    {
+        $obj = CandidateAward::where('id',$id)->first();
+
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'date' => 'required'
+        ]);
+        
+        $obj->title = $request->title;
+        $obj->description = $request->description;
+        $obj->date = $request->date;
+        $obj->update();
+
+        return redirect()->route('candidate_award')->with('success', 'Award is updated successfully.');
+    }
+
+    public function award_delete($id)
+    {
+        CandidateAward::where('id',$id)->delete();
+        return redirect()->route('candidate_award')->with('success', 'Award is deleted successfully.');
+    }
+
+ 
+    // Candidate Resume Methods
+    public function resume()
+    {
+        $resumes = CandidateResume::where('candidate_id',Auth::guard('candidate')->user()->id)->get();
+        return view('candidate.resume', compact('resumes'));
+    }
+
+    public function resume_create()
+    {
+        return view('candidate.resume-create');
+    }
+
+    public function resume_store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'file' => 'required|mimes:pdf,doc,docx'
+        ]);
+
+        $ext = $request->file('file')->extension();
+        $final_name = 'resume_'.time().'.'.$ext;
+        $request->file('file')->move(public_path('uploads/'),$final_name);
+
+        $obj = new CandidateResume();
+        $obj->candidate_id = Auth::guard('candidate')->user()->id;
+        $obj->name = $request->name;
+        $obj->file = $final_name;
+        $obj->save();
+
+        return redirect()->route('candidate_resume')->with('success', 'Resume is added successfully.');
+    }
+
+    public function resume_edit($id)
+    {
+        $resume_single = CandidateResume::where('id',$id)->first();
+
+        return view('candidate.resume-edit', compact('resume_single'));
+    }
+
+    public function resume_update(Request $request, $id)
+    {
+        $obj = CandidateResume::where('id',$id)->first();
+
+        $request->validate([
+            'name' => 'required'
+        ]);
+
+        if($request->hasFile('file')) {
+            $request->validate([
+                'file' => 'mimes:pdf,doc,docx'
+            ]);
+
+            unlink(public_path('uploads/'.$obj->file));
+
+            $ext = $request->file('file')->extension();
+            $final_name = 'resume_'.time().'.'.$ext;
+
+            $request->file('file')->move(public_path('uploads/'),$final_name);
+
+            $obj->file = $final_name;
+        }
+        
+        $obj->name = $request->name;
+        $obj->update();
+
+        return redirect()->route('candidate_resume')->with('success', 'Resume is updated successfully.');
+    }
+
+    public function resume_delete($id)
+    {
+        $resume_single = CandidateResume::where('id',$id)->first();
+        unlink(public_path('uploads/'.$resume_single->file));
+        CandidateResume::where('id',$id)->delete();
+        return redirect()->route('candidate_resume')->with('success', 'Resume is deleted successfully.');
     }
 }

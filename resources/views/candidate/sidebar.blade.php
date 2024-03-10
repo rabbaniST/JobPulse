@@ -11,6 +11,13 @@
     <li class="list-group-item {{ Request::is('candidate/experience/view') ? 'active' : '' }}">
         <a href="{{ route('candidate_experience') }}">Work Experience</a>
     </li>
+    <li class="list-group-item {{ Request::is('candidate/award/view') ? 'active' : '' }}">
+        <a href="{{ route('candidate_award') }}">Awards</a>
+    </li>
+    <li class="list-group-item {{ Request::is('candidate/resume/view') ? 'active' : '' }}">
+        <a href="{{ route('candidate_resume') }}">Resume Upload</a>
+    </li>
+    <li class="list-group-item {{ Request::is('candidate/edit-profile') ? 'active' : '' }}">
     <li class="list-group-item {{ Request::is('candidate/edit-profile') ? 'active' : '' }}">
         <a href="{{ route('candidate_edit_profile') }}">Edit Profile</a>
     </li>
