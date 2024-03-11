@@ -28,7 +28,10 @@ class CompanyController extends Controller
 {
     public function dashboard()
     {
-        return view('company.dashboard');
+        $total_opened_jobs = Job::where('company_id',Auth::guard('company')->user()->id)->count();
+        $total_featured_jobs = Job::where('company_id',Auth::guard('company')->user()->id)->where('is_featured',1)->count();
+        $jobs = Job::with('JobCategory')->where('company_id',Auth::guard('company')->user()->id)->orderBy('id','desc')->take(2)->get();
+        return view('company.dashboard', compact('jobs','total_opened_jobs','total_featured_jobs'));
     }
     public function make_payment()
     {

@@ -1,10 +1,10 @@
-@extends('front.layout.app')
+@extends('Forntend.layout.app')
 
 @section('seo_title'){{ $other_page_item->forget_password_page_title }}@endsection
 @section('seo_meta_description'){{ $other_page_item->forget_password_page_meta_description }}@endsection
 
 @section('main-content')
-<div class="page-top" style="background-image: url('{{ asset('uploads/'.$global_banner_data->banner_forget_password) }}')">
+<div class="page-top" style="background-image: url('{{ asset('forntend/uploads/banner.jpg') }}')">
     <div class="bg"></div>
     <div class="container">
         <div class="row">

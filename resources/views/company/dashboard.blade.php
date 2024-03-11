@@ -21,13 +21,13 @@
                 </div>
             </div>
             <div class="col-lg-9 col-md-12">
-                <h1>Abc Compnay</h1>
+                <h3>Hello, {{ Auth::guard('company')->user()->person_name }} ({{ Auth::guard('company')->user()->company_name }})</h3>
                 <p>See all the statistics at a glance:</p>
 
                 <div class="row box-items">
                     <div class="col-md-4">
                         <div class="box1">
-                            <h4>404</h4>
+                            <h4>{{ $total_opened_jobs }}</h4>
                             <p>Open Jobs</p>
                         </div>
                     </div>
@@ -52,53 +52,28 @@
                                 <th>Is Urgent?</th>
                             </tr>
 
+                            @foreach($jobs as $item)
                             <tr>
-                                <td>1</td>
-                                <td>Senior Laravel Developer</td>
-                                <td>Web Development</td>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $item->title }}</td>
+                                <td>{{ $item->JobCategory->name }}</td>
+                                <td>{{ $item->JobLocation->name }}</td>
                                 <td>
-                                    <span class="badge bg-success"
-                                        >Active</span
-                                    >
+                                    @if($item->is_featured == 1)
+                                    <span class="badge bg-success">Featured</span>
+                                    @else
+                                    <span class="badge bg-danger">Not Featured</span>
+                                    @endif
                                 </td>
                                 <td>
-                                    <a
-                                        href=""
-                                        class="btn btn-warning btn-sm text-white"
-                                        ><i class="fas fa-edit"></i
-                                    ></a>
-                                    <a
-                                        href=""
-                                        class="btn btn-danger btn-sm"
-                                        onClick="return confirm('Are you sure?');"
-                                        ><i class="fas fa-trash-alt"></i
-                                    ></a>
+                                    @if($item->is_urgent == 1)
+                                    <span class="badge bg-danger">Urgent</span>
+                                    @else
+                                    <span class="badge bg-primary">Not Urgent</span>
+                                    @endif
                                 </td>
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>UI/UX Designer</td>
-                                <td>Web Design</td>
-                                <td>
-                                    <span class="badge bg-danger"
-                                        >Pending</span
-                                    >
-                                </td>
-                                <td>
-                                    <a
-                                        href=""
-                                        class="btn btn-warning btn-sm text-white"
-                                        ><i class="fas fa-edit"></i
-                                    ></a>
-                                    <a
-                                        href=""
-                                        class="btn btn-danger btn-sm"
-                                        onClick="return confirm('Are you sure?');"
-                                        ><i class="fas fa-trash-alt"></i
-                                    ></a>
-                                </td>
-                            </tr>
-
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

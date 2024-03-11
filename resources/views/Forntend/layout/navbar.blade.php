@@ -23,10 +23,8 @@
                                 >Home</a
                             >
                         </li>
-                        <li class="nav-item">
-                            <a href="jobs.html" class="nav-link">
-                                Find Jobs</a
-                            >
+                        <li class="nav-item {{ Request::is('job-listing')||Request::is('job/*') ? 'active' : '' }}">
+                            <a href="{{ route('job_listing') }}" class="nav-link">Find Jobs</a>
                         </li>
                         <li class="nav-item">
                             <a href="companies.html" class="nav-link"

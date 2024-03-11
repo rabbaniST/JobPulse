@@ -29,6 +29,7 @@ use App\Http\Controllers\Forntend\LoginPageController;
 use App\Http\Controllers\Admin\PrivacyPolicyController;
 use App\Http\Controllers\Candidate\CandidateController;
 use App\Http\Controllers\Forntend\ForgetPageController;
+use App\Http\Controllers\Forntend\JobListingController;
 use App\Http\Controllers\Forntend\SignupPageController;
 use App\Http\Controllers\Forntend\PricingPageController;
 use App\Http\Controllers\Forntend\PrivacyPageController;
@@ -50,6 +51,11 @@ Route::get('faq', [ForntFaqController::class, 'index'])->name('faq');
 Route::get('contact-page', [ForntContactPageConroller::class, 'index'])->name('contact');
 Route::post('contact/submit', [ForntContactPageConroller::class, 'submit'])->name('contact_submit');
 Route::get('pricing', [PricingPageController::class, 'index'])->name('pricing');
+
+// Job Listion Page Routes
+Route::get('job-listing', [JobListingController::class, 'index'])->name('job_listing');
+Route::get('job-detail/{id}', [JobListingController::class, 'detail'])->name('job');
+Route::post('job-enquery/email', [JobListingController::class, 'send_email'])->name('job_enquery_send_email');
 
 // login and signup page routes
 Route::get('login', [LoginPageController::class, 'index'])->name('login');

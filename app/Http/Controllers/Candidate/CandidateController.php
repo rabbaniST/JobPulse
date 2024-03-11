@@ -445,7 +445,7 @@ class CandidateController extends Controller
 
     public function bookmark_view()
     {
-        $bookmarked_jobs = CandidateBookmark::with('rJob','rCandidate')->where('candidate_id',Auth::guard('candidate')->user()->id)->get();
+        $bookmarked_jobs = CandidateBookmark::with('Job','Candidate')->where('candidate_id',Auth::guard('candidate')->user()->id)->get();
 
         return view('candidate.bookmark', compact('bookmarked_jobs'));
     }

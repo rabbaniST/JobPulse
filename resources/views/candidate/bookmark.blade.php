@@ -35,7 +35,7 @@
                             @foreach($bookmarked_jobs as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $item->rJob->title }}</td>
+                                <td>{{ $item->Job->title }}</td>
                                 <td>
                                     <a href="{{ route('job',$item->job_id) }}" class="btn btn-primary btn-sm">Detail</a>
                                     <a href="{{ route('candidate_bookmark_delete',$item->id) }}" class="btn btn-danger btn-sm" onClick="return confirm('Are you sure?');">Delete</a>
