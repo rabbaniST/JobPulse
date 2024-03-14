@@ -41,8 +41,8 @@
                             @php $i++; @endphp 
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $item->rJob->title }}</td>
-                                <td>{{ $item->rJob->rCompany->company_name }}</td>
+                                <td>{{ $item->Job->title }}</td>
+                                <td>{{ $item->Job->Company->company_name }}</td>
                                 <td>
                                     @if($item->status == 'Applied')
                                         @php $color = 'primary'; @endphp
@@ -59,7 +59,7 @@
                                     <a href="" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $i }}">Cover Letter</a>
                                 </td>
                                 <td>
-                                    <a href="{{ route('job',$item->rJob->id) }}" class="btn btn-primary btn-sm text-white"><i class="fas fa-eye"></i></a>
+                                    <a href="{{ route('job',$item->Job->id) }}" class="btn btn-primary btn-sm text-white"><i class="fas fa-eye"></i></a>
 
                                     <div class="modal fade" id="exampleModal{{ $i }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">

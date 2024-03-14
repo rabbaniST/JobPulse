@@ -425,7 +425,7 @@ class CandidateController extends Controller
     public function resume_delete($id)
     {
         $resume_single = CandidateResume::where('id',$id)->first();
-        unlink(public_path('uploads/'.$resume_single->file));
+        unlink(public_path('forntend/uploads/'.$resume_single->file));
         CandidateResume::where('id',$id)->delete();
         return redirect()->route('candidate_resume')->with('success', 'Resume is deleted successfully.');
     }
@@ -486,8 +486,8 @@ class CandidateController extends Controller
         $obj->status = 'Applied';
         $obj->save();
 
-        $job_info = Job::with('rCompany')->where('id',$id)->first();
-        $company_email = $job_info->rCompany->email;
+        $job_info = Job::with('Company')->where('id',$id)->first();
+        $company_email = $job_info->Company->email;
 
         // Sending email to company
         $applicants_list_url = route('company_applicants',$id);

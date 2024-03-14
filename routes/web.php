@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\ContactPageController;
 use App\Http\Controllers\Admin\JobCategoryController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Forntend\ForntFaqController;
+use App\Http\Controllers\Admin\AdminCompanyController;
 use App\Http\Controllers\Admin\AdminPackageController;
 use App\Http\Controllers\Forntend\LoginPageController;
 use App\Http\Controllers\Admin\PrivacyPolicyController;
@@ -31,6 +32,7 @@ use App\Http\Controllers\Candidate\CandidateController;
 use App\Http\Controllers\Forntend\ForgetPageController;
 use App\Http\Controllers\Forntend\JobListingController;
 use App\Http\Controllers\Forntend\SignupPageController;
+use App\Http\Controllers\Admin\AdminCandidateController;
 use App\Http\Controllers\Forntend\PricingPageController;
 use App\Http\Controllers\Forntend\PrivacyPageController;
 use App\Http\Controllers\Admin\HomePageSettingController;
@@ -111,6 +113,13 @@ Route::middleware(['company:company'])->group(function() {
     Route::post('/company/paypal/payment', [CompanyController::class, 'paypal'])->name('company_paypal');
     Route::get('/company/paypal/success', [CompanyController::class, 'paypal_success'])->name('company_paypal_success');
     Route::get('/company/paypal/cancel', [CompanyController::class, 'paypal_cancel'])->name('company_paypal_cancel');
+
+    
+
+    Route::get('/company/candidate-applications', [CompanyController::class, 'candidate_applications'])->name('company_candidate_applications');
+    Route::get('/company/applicants/{id}', [CompanyController::class, 'applicants'])->name('company_applicants');
+    Route::get('/company/applicant-resume/{id}', [CompanyController::class, 'applicant_resume'])->name('company_applicant_resume');
+    Route::post('/company/application-status-change', [CompanyController::class, 'application_status_change'])->name('company_application_status_change');
 });
 /* Candidate */
 Route::post('candidate_login_submit', [LoginPageController::class, 'candidate_login_submit'])->name('candidate_login_submit');
@@ -176,6 +185,10 @@ Route::middleware(['candidate:candidate'])->group(function() {
     Route::get('/candidate/bookmark-add/{id}', [CandidateController::class, 'bookmark_add'])->name('candidate_bookmark_add');
     Route::get('/candidate/bookmark-view', [CandidateController::class, 'bookmark_view'])->name('candidate_bookmark_view');
     Route::get('/candidate/bookmark-delete/{id}', [CandidateController::class, 'bookmark_delete'])->name('candidate_bookmark_delete');
+
+    Route::get('/candidate/apply/{id}', [CandidateController::class, 'apply'])->name('candidate_apply');
+    Route::post('/candidate/apply-submit/{id}', [CandidateController::class, 'apply_submit'])->name('candidate_apply_submit');
+    Route::get('/candidate/applications', [CandidateController::class, 'applications'])->name('candidate_applications');
 
 });
 // Admin Group routes
@@ -296,6 +309,20 @@ Route::middleware(['admin:admin'])->group(function () {
     Route::get('/admin/why-choose/edit/{id}', [WhyChooseController::class, 'edit'])->name('admin_why_choose_edit');
     Route::post('/admin/why-choose/update/{id}', [WhyChooseController::class, 'update'])->name('admin_why_choose_update');
     Route::get('/admin/why-choose/delete/{id}', [WhyChooseController::class, 'delete'])->name('admin_why_choose_delete');
+
+    // Admin Company Routes
+    Route::get('/admin/companies', [AdminCompanyController::class, 'index'])->name('admin_companies');
+    Route::get('/admin/companies-detail/{id}', [AdminCompanyController::class, 'companies_detail'])->name('admin_companies_detail');
+    Route::get('/admin/companies-jobs/{id}', [AdminCompanyController::class, 'companies_jobs'])->name('admin_companies_jobs');
+    Route::get('/admin/companies-applicants/{id}', [AdminCompanyController::class, 'companies_applicants'])->name('admin_companies_applicants');
+    Route::get('/admin/companies-applicant-resume/{id}', [AdminCompanyController::class, 'companies_applicant_resume'])->name('admin_companies_applicant_resume');
+    Route::get('/admin/companies-delete/{id}', [AdminCompanyController::class, 'delete'])->name('admin_companies_delete');
+
+    // Admin Candidate Routes
+    Route::get('/admin/candidates', [AdminCandidateController::class, 'index'])->name('admin_candidates');
+    Route::get('/admin/candidates-detail/{id}', [AdminCandidateController::class, 'candidates_detail'])->name('admin_candidates_detail');
+    Route::get('/admin/candidates-applied-jobs/{id}', [AdminCandidateController::class, 'candidates_applied_jobs'])->name('admin_candidates_applied_jobs');
+    Route::get('/admin/candidates-delete/{id}', [AdminCandidateController::class, 'delete'])->name('admin_candidates_delete');
 
     // Tesimonial Section Routes
     Route::get('/admin/testimonial', [TestimonialController::class, 'index'])->name('admin_testimonial');
