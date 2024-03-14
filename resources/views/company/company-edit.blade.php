@@ -29,9 +29,9 @@
                             <label for="">Existing Logo</label>
                             <div class="form-group">
                                 @if(Auth::guard('company')->user()->logo == '')
-                                <img src="{{ asset('uploads/default_company_logo.jpg') }}" alt="" class="logo">
+                                <img src="{{ asset('forntend/uploads/default_company_logo.jpg') }}" alt="" class="logo">
                                 @else
-                                <img src="{{ asset('uploads/'.Auth::guard('company')->user()->logo) }}" alt="" class="logo">
+                                <img src="{{ asset('forntend/uploads/'.Auth::guard('company')->user()->logo) }}" alt="" class="logo">
                                 @endif
                             </div>
                         </div>

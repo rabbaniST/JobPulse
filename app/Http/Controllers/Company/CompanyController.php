@@ -72,13 +72,13 @@ class CompanyController extends Controller
             ]);
 
             if(Auth::guard('company')->user()->logo != '') {
-                unlink(public_path('uploads/'.$obj->logo));
+                unlink(public_path('forntend/uploads/'.$obj->logo));
             }
 
             $ext = $request->file('logo')->extension();
             $final_name = 'company_logo_'.time().'.'.$ext;
 
-            $request->file('logo')->move(public_path('uploads/'),$final_name);
+            $request->file('logo')->move(public_path('forntend/uploads/'),$final_name);
 
             $obj->logo = $final_name;
         }

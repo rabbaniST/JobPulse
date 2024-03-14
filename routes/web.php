@@ -36,6 +36,7 @@ use App\Http\Controllers\Forntend\PrivacyPageController;
 use App\Http\Controllers\Admin\HomePageSettingController;
 use App\Http\Controllers\Admin\AdminCompanySizeController;
 use App\Http\Controllers\Admin\AdminPricingPageController;
+use App\Http\Controllers\Forntend\CompanyListingController;
 use App\Http\Controllers\Forntend\ForntContactPageConroller;
 use App\Http\Controllers\Forntend\ForntJobCategoryController;
 use App\Http\Controllers\Admin\AdminCompanyIndustryController;
@@ -52,10 +53,15 @@ Route::get('contact-page', [ForntContactPageConroller::class, 'index'])->name('c
 Route::post('contact/submit', [ForntContactPageConroller::class, 'submit'])->name('contact_submit');
 Route::get('pricing', [PricingPageController::class, 'index'])->name('pricing');
 
-// Job Listion Page Routes
+// Job Listing Page Routes
 Route::get('job-listing', [JobListingController::class, 'index'])->name('job_listing');
 Route::get('job-detail/{id}', [JobListingController::class, 'detail'])->name('job');
 Route::post('job-enquery/email', [JobListingController::class, 'send_email'])->name('job_enquery_send_email');
+
+// Company Listing Page routes
+Route::get('company-listing', [CompanyListingController::class, 'index'])->name('company_listing');
+Route::get('company-detail/{id}', [CompanyListingController::class, 'detail'])->name('company');
+Route::post('company-enquery/email', [CompanyListingController::class, 'send_email'])->name('company_enquery_send_email');
 
 // login and signup page routes
 Route::get('login', [LoginPageController::class, 'index'])->name('login');
