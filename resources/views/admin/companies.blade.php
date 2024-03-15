@@ -21,6 +21,8 @@
                             </tr>
                             </thead>
                             <tbody>
+                         
+                            
                                 @foreach($companies as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>

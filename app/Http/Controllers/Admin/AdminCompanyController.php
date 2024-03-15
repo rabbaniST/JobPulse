@@ -30,6 +30,7 @@ class AdminCompanyController extends Controller
     {
         $companies_detail = Company::with('CompanyLocation','CompanyIndustry','CompanySize')->where('id',$id)->first();
 
+        
         $photos = CompanyPhoto::where('company_id',$id)->get();
         $videos = CompanyVideo::where('company_id',$id)->get();
         return view('admin.companies-detail', compact('companies_detail','photos','videos'));
@@ -46,7 +47,7 @@ class AdminCompanyController extends Controller
     {
         $job_detail = Job::where('id',$id)->first();
         $applicants = CandidateApplication::with('Candidate')->where('job_id',$id)->get();
-        return view('admin.companies_applicants', compact('applicants','job_detail'));
+        return view('admin.companies-applicants', compact('applicants','job_detail'));
     }
 
     public function companies_applicant_resume($id)
@@ -58,7 +59,7 @@ class AdminCompanyController extends Controller
         $candidate_awards = CandidateAward::where('candidate_id',$id)->get();
         $candidate_resumes = CandidateResume::where('candidate_id',$id)->get();
 
-        return view('admin.companies_applicant_resume', compact('candidate_single','candidate_educations','candidate_experiences','candidate_skills','candidate_awards','candidate_resumes'));
+        return view('admin.companies-applicant-resume', compact('candidate_single','candidate_educations','candidate_experiences','candidate_skills','candidate_awards','candidate_resumes'));
     }
 
     public function delete($id)

@@ -17,8 +17,8 @@
                     <div class="text">
                         <h3>{{ $company_single->company_name }}</h3>
                         <div class="detail-1 d-flex justify-content-start"> 
-                            <div class="category">{{ $company_single->CompanyIndustry->name }}</div>
-                            <div class="location">{{ $company_single->CompanyLocation->name }}</div>
+                            <div class="category">{{ $company_single->CompanyIndustry->name ?? "N/A" }}</div>
+                            <div class="location">{{ $company_single->CompanyLocation->name ?? "N/A" }}</div>
                             <div class="email">{{ $company_single->email }}</div>
                             @if($company_single->phone!=null)
                             <div class="phone">
@@ -265,15 +265,15 @@
                                 </tr>
                                 <tr>
                                     <td><b> Industry:</b></td>
-                                    <td>{{ $company_single->CompanyIndustry->name }}</td>
+                                    <div class="category">{{ $company_single->CompanyIndustry->name ?? "N/A" }}</div>
                                 </tr>
                                 <tr>
                                     <td><b> Location:</b></td>
-                                    <td>{{ $company_single->CompanyLocation->name }}</td>
+                                    <div class="category">{{ $company_single->CompanyLocation->name ?? "N/A" }}</div>
                                 </tr>
                                 <tr>
                                     <td><b>Company Size:</b></td>
-                                    <td>{{ $company_single->CompanySize->name }}</td>
+                                    <div class="category">{{ $company_single->CompanySize->name ?? "N/A" }}</div>
                                 </tr>
                                 @if($company_single->address!=null)
                                 <tr>

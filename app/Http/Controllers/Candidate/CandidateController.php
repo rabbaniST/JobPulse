@@ -23,7 +23,17 @@ class CandidateController extends Controller
 {
     public function dashboard()
     {
-        return view('candidate.dashboard');
+        $total_applied_jobs=0;
+        $total_rejected_jobs=0;
+        $total_approved_jobs=0;
+
+        $total_applied_jobs = CandidateApplication::where('candidate_id',Auth::guard('candidate')->user()->id)->where('status','Applied')->count();
+
+        $total_rejected_jobs = CandidateApplication::where('candidate_id',Auth::guard('candidate')->user()->id)->where('status','Rejected')->count();
+
+        $total_approved_jobs = CandidateApplication::where('candidate_id',Auth::guard('candidate')->user()->id)->where('status','Approved')->count();
+
+        return view('candidate.dashboard',compact('total_applied_jobs','total_rejected_jobs','total_approved_jobs'));
     }
 
 

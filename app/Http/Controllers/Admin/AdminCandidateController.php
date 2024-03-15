@@ -35,7 +35,7 @@ class AdminCandidateController extends Controller
 
     public function candidates_applied_jobs($id)
     {
-        $applications = CandidateApplication::with('rJob')->where('candidate_id',$id)->get();
+        $applications = CandidateApplication::with('Job')->where('candidate_id',$id)->get();
         return view('admin.candidates-applied-job',compact('applications'));
     }
 

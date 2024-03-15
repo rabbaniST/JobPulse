@@ -33,7 +33,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="box2">
-                            <h4>3</h4>
+                            <h4>{{ $total_featured_jobs }}</h4>
                             <p>Featured Jobs</p>
                         </div>
                     </div>

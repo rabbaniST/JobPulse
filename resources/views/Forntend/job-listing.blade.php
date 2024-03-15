@@ -122,7 +122,7 @@
                             <div class="col-md-12">
                                 <div class="item d-flex justify-content-start">
                                     <div class="logo">
-                                        <img src="{{ asset('forntend/uploads/'.$item->Company->logo) }}" alt="">
+                                        <img src="{{ asset('uploads/'.$item->Company->logo) }}" alt="">
                                     </div>
                                     <div class="text">
                                         <h3><a href="{{ route('job',$item->id) }}">{{ $item->title }}, {{ $item->Company->company_name }}</a></h3>

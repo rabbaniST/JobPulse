@@ -81,7 +81,7 @@ class CompanyController extends Controller
             ]);
 
             if(Auth::guard('company')->user()->logo != '') {
-                unlink(public_path('forntend/uploads/'.$obj->logo));
+                unlink(public_path('uploads/'.$obj->logo));
             }
 
             $ext = $request->file('logo')->extension();
@@ -223,7 +223,7 @@ class CompanyController extends Controller
 
         $ext = $request->file('photo')->extension();
         $final_name = 'company_photo_'.time().'.'.$ext;
-        $request->file('photo')->move(public_path('forntend/uploads/'),$final_name);
+        $request->file('photo')->move(public_path('uploads/'),$final_name);
 
         $obj->photo = $final_name;
         $obj->company_id = Auth::guard('company')->user()->id;
@@ -235,7 +235,7 @@ class CompanyController extends Controller
     public function photos_delete($id)
     {
         $single_data = CompanyPhoto::where('id',$id)->first();
-        unlink(public_path('forntend/uploads/'.$single_data->photo));
+        unlink(public_path('uploads/'.$single_data->photo));
         CompanyPhoto::where('id',$id)->delete();
         return redirect()->back()->with('success', 'Photo is deleted successfully.');
     }

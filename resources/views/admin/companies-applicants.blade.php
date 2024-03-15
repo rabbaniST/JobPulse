@@ -1,6 +1,6 @@
 @extends('admin.layout.app')
 
-@section('heading', 'Candidates Applied Jobs')
+@section('heading', 'Applicants for job: '.$job_detail->title)
 
 @section('content')
 <div class="section-body">
@@ -13,38 +13,38 @@
                             <thead>
                             <tr>
                                 <th>SL</th>
-                                <th>Job Title</th>
-                                <th>Company</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
                                 <th>Status</th>
-                                <th>Cover Letter</th>
                                 <th>Detail</th>
+                                <th>CV</th>
                             </tr>
                             </thead>
                             <tbody>
                                 @php $i=0; @endphp
-                                @foreach($applications as $item)
+                                @foreach($applicants as $item)
                                 @php $i++; @endphp
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->Job->title }}</td>
-                                    <td>{{ $item->Job->Company->company_name }}</td>
+                                    <td>{{ $item->Candidate->name }}</td>
+                                    <td>{{ $item->Candidate->email }}</td>
+                                    <td>{{ $item->Candidate->phone }}</td>
                                     <td>
                                         @if($item->status == 'Applied')
-                                            @php $color = 'primary'; @endphp
+                                            @php $color="primary"; @endphp
                                         @elseif($item->status == 'Approved')
-                                            @php $color = 'success'; @endphp
+                                            @php $color="success"; @endphp
                                         @elseif($item->status == 'Rejected')
-                                            @php $color = 'danger'; @endphp
-                                        @endif                                    
-                                        <div class="badge bg-{{ $color }}">
-                                            {{ $item->status }}
-                                        </div>
+                                            @php $color="danger"; @endphp
+                                        @endif
+                                        <span class="badge bg-{{ $color }}">{{ $item->status }}</span>
                                     </td>
                                     <td>
-                                        <a href="" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $i }}">Cover Letter</a>
+                                        <a href="{{ route('admin_companies_applicant_resume',$item->candidate_id) }}" class="badge bg-primary text-white" target="_blank">Detail</a>
                                     </td>
                                     <td>
-                                        <a href="{{ route('job',$item->Job->id) }}" class="btn btn-primary btn-sm text-white"><i class="fas fa-eye"></i></a>
+                                        <a href="" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $i }}">CV</a>
 
                                         <div class="modal fade" id="exampleModal{{ $i }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
@@ -59,7 +59,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                     </td>
                                 </tr>
                                 @endforeach

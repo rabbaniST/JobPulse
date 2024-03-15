@@ -123,7 +123,7 @@
                                             <img src="{{ asset('uploads/'.$item->Company->logo) }}" alt="">
                                         </div>
                                         <div class="text">
-                                            <h3><a href="{{ route('job',$item->id) }}">{{ $item->title }}, {{ $item->rCompany->company_name }}</a></h3>
+                                            <h3><a href="{{ route('job',$item->id) }}">{{ $item->title }}, {{ $item->Company->company_name }}</a></h3>
                                             <div class="detail-1 d-flex justify-content-start">
                                                 <div class="category">
                                                     {{ $item->JobCategory->name }}

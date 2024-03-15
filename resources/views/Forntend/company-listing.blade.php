@@ -109,11 +109,11 @@
                                 <div class="text">
                                     <h3><a href="{{ route('company',$item->id) }}">{{ $item->company_name }}</a></h3>
                                     <div class="detail-1 d-flex justify-content-start">
-                                        <div class="category"> 
-                                            Data Entry
+                                        <div class="category">
+                                            {{ $item->CompanyIndustry->name ?? "N/A" }}
                                         </div>
                                         <div class="location">
-                                            New York
+                                            {{ $item->CompanyLocation->name ?? "N/A" }}
                                         </div>
                                     </div>
                                     <div class="detail-2">
